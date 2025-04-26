@@ -1,0 +1,127 @@
+● What is Emmet?
+
+Emmet is a powerful toolkit for web developers that helps speed up HTML and CSS coding by providing shorthand syntax. It allows you to write complex HTML or CSS structures using abbreviations, and then expands them into fully formed code. It’s particularly useful for writing repetitive code, reducing the amount of typing needed to create elements and structures.
+
+● Difference between a Library and Framework?
+
+1. Library:
+   A library is a collection of pre-written code that you can call in your program to perform specific tasks. It's a set of functions and procedures you can use to avoid "reinventing the wheel."
+
+You control the flow: In a library, you call the code when you need it. You decide when and how to use the library within your program.
+Flexibility: Libraries are typically more flexible since they provide specific functionality, but you're still in control of your program's architecture and flow.
+Examples: React (for UI components), jQuery (for DOM manipulation), Lodash (for utility functions), Axios (for making HTTP requests).
+
+2. Framework:
+
+A framework is a more structured and opinionated environment that dictates the overall flow of an application. It provides the skeleton or foundation, and it’s more rigid about how things should be done.
+
+Framework controls the flow: In a framework, the framework calls your code at certain points, not the other way around. This concept is often called "Inversion of Control" or "the Hollywood Principle": “Don’t call us, we’ll call you.”
+Predefined structure: Frameworks come with built-in ways to organize your code (like MVC for web apps). They may require you to follow certain conventions, which can speed up development but can also limit flexibility.
+Examples: Angular, Django, Ruby on Rails, Laravel.
+
+● What is CDN? Why do we use it?
+
+A CDN(Content Delivery Network) is a network of servers distributed across different geographical locations that helps deliver content to users faster by caching static resources close to their location. It improves website performance, reduces server load, enhances scalability, and provides security benefits.
+
+● Why is React known as React?
+
+React is called React because it is designed around the concept of reacting to changes in the user interface (UI). It reacts to data changes and updates the view (UI) accordingly. The name "React" reflects this core functionality — it "reacts" to changes in state or data and efficiently re-renders the UI to reflect those changes.
+
+Here's a deeper explanation:
+Reactivity to Data Changes: React allows developers to create dynamic UIs that automatically update when data changes. When the state of an application changes, React "reacts" by re-rendering only the components that need to be updated, rather than reloading the entire page. This ensures efficient and smooth user experiences.
+
+Declarative Programming: React follows a declarative approach where developers describe what the UI should look like for a given state. React then takes care of updating the UI whenever the state changes. This is in line with the idea of "reacting" to state changes.
+
+Component-based: React is built around components, which are small, reusable pieces of code that can independently handle their own state and UI. When the state or data in a component changes, React reacts to that change by re-rendering the component.
+
+Efficient DOM Manipulation: React uses a virtual DOM to efficiently "react" to changes by minimizing direct manipulations of the actual DOM. This helps to make updates fast and resource-efficient, especially in dynamic web applications.
+
+In short, React is named as such because it focuses on efficiently reacting to changes in data or state and updating the user interface accordingly. This "reactivity" to changes is the key principle behind how React works.
+
+● What is crossorigin in script tag?
+
+The `crossorigin` attribute in the `<script>` tag is used to control how the browser handles cross-origin requests for loading external resources (such as JavaScript files) from a different domain, subdomain, or protocol. It defines the **CORS** (Cross-Origin Resource Sharing) behavior for the resource.
+
+### **How does it work?**
+
+When you load a resource (like a JavaScript file) from a different origin, the browser may block it due to security concerns (because of the Same-Origin Policy). The `crossorigin` attribute provides a way to make those requests more secure and controlled by allowing or denying certain types of cross-origin access.
+
+The `crossorigin` attribute can have the following values:
+
+### **1. `anonymous`**
+
+- **Usage**: `crossorigin="anonymous"`
+- **Description**: This value tells the browser to send the request without including any credentials (like cookies or HTTP authentication) for the resource. The resource server must also respond with the appropriate CORS headers (`Access-Control-Allow-Origin`) to allow the resource to be loaded.
+
+  **Example:**
+
+  ```html
+  <script src="https://example.com/script.js" crossorigin="anonymous"></script>
+  ```
+
+  This tells the browser to fetch the script from `example.com`, but without sending any credentials (cookies or HTTP auth). The server must send the correct CORS headers to allow the script to be loaded.
+
+### **2. `use-credentials`**
+
+- **Usage**: `crossorigin="use-credentials"`
+- **Description**: This value tells the browser to include credentials (cookies or HTTP authentication) when making the request for the external resource. The resource server must explicitly allow credentials by including the header `Access-Control-Allow-Credentials: true` in its response. Additionally, the `Access-Control-Allow-Origin` header cannot be set to `*` (it must be a specific origin).
+
+  **Example:**
+
+  ```html
+  <script
+    src="https://example.com/script.js"
+    crossorigin="use-credentials"
+  ></script>
+  ```
+
+  In this case, credentials will be sent along with the request to `example.com`, and the server must respond with the appropriate headers to allow the use of credentials.
+
+### **3. No `crossorigin` attribute (default behavior)**
+
+- **Usage**: If you don't specify the `crossorigin` attribute, the browser treats the request as if no CORS headers are included, and the request may be blocked depending on the server's settings.
+
+  **Example:**
+
+  ```html
+  <script src="https://example.com/script.js"></script>
+  ```
+
+  In this case, the request may fail if the external server does not support cross-origin requests.
+
+### **Why use `crossorigin` in a `<script>` tag?**
+
+1. **Security**: It ensures that only resources that are properly configured for cross-origin sharing can be used by your website.
+2. **Preventing Errors**: When you're loading third-party resources (like libraries or scripts) from other origins, setting the `crossorigin` attribute ensures that the resource is loaded correctly without security errors or CORS violations.
+3. **Control Over Credentials**: It gives you the ability to specify whether credentials (cookies, HTTP authentication) should be included when making the request to the external resource.
+
+### **Example: Using `crossorigin` with a CDN**
+
+```html
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+  crossorigin="anonymous"
+></script>
+```
+
+In this example, the browser will try to load jQuery from the CDN without sending credentials, and it will expect the CDN server to respond with the correct CORS headers.
+
+### **Summary:**
+
+The `crossorigin` attribute in the `<script>` tag controls the handling of cross-origin requests, allowing you to specify whether the browser should include credentials when fetching resources and ensuring that external resources comply with CORS policies.
+
+● What is diference between React and ReactDOM
+
+React is the library for creating and managing components, handling state, and working with the virtual DOM.
+ReactDOM is a package that takes care of rendering and updating the actual DOM for web applications.
+
+● What is difference between react.development.js and react.production.js files via CDN?
+
+react.development.js: Used during development. It includes additional debugging tools and is larger in size due to helpful error messages and unoptimized code.
+react.production.js: Used in production. It is optimized for performance, with smaller file size and no debugging tools or error messages.
+For production deployment, always use the minified version (react.production.min.js) to ensure optimal performance
+
+● What is async and defer?
+
+async: Loads the script asynchronously and executes it immediately after it's downloaded, without waiting for the HTML to finish parsing. It doesn’t guarantee execution order.
+defer: Loads the script asynchronously but waits to execute it until the HTML is completely parsed, ensuring scripts execute in the order they appear in the HTML.
