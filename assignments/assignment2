@@ -1,0 +1,242 @@
+● - What is `NPM`?
+
+NPM manages the node packages of JS primarily for nodejs. We can install/uninstall/update/use/share packages with npm
+
+● - What is `Parcel/Webpack`? Why do we need it?
+
+1. What is Webpack?
+   Webpack is a powerful, widely-used module bundler for JavaScript applications. It takes various files and resources, processes them, and bundles them into one or more output files, which can be served by a web server and run in the browser.
+
+Key Features of Webpack:
+Module Bundling: Webpack allows you to bundle JavaScript, CSS, HTML, images, fonts, etc., into a single or multiple bundles that are easy for the browser to load.
+Loaders: Webpack can transform files before bundling, such as compiling Sass/SCSS to CSS, converting ES6+ JavaScript to older versions using Babel, or loading image files as data URIs.
+Plugins: Plugins provide a way to run custom scripts or automate tasks in your build process, such as minifying files, cleaning output directories, or injecting environment variables.
+Code Splitting: Webpack allows you to split your code into smaller chunks and load them only when needed (on demand), improving your app's performance.
+Tree Shaking: Webpack can remove unused code (dead code elimination) to reduce the size of your final bundle.
+Why We Need Webpack:
+Managing Dependencies: Webpack helps organize and manage multiple JavaScript modules or libraries by bundling them into a format the browser can use.
+Optimizing Load Time: It allows for optimizations like lazy loading, splitting code into smaller bundles, and minifying the final bundle to reduce the load time of your app.
+Processing Assets: Webpack lets you include other types of files (CSS, images, etc.) in your bundle, making it easy to manage and serve your assets efficiently. 2. What is Parcel?
+Parcel is also a module bundler, but it is often considered a simpler alternative to Webpack. Parcel is designed to have zero configuration and work out of the box with minimal setup. It comes with built-in support for many common development features.
+
+Key Features of Parcel:
+Zero Configuration: Parcel requires very little setup compared to Webpack. It automatically detects your project configuration and dependencies.
+Fast Hot Module Replacement (HMR): Parcel comes with a fast development server and automatic hot module replacement, which means you can see your changes in the browser instantly without a full page reload.
+Built-in Support for Various File Types: Parcel supports JavaScript, CSS, HTML, images, and even more out of the box without the need for additional plugins or loaders.
+Automatic Code Splitting: Parcel automatically splits your code into smaller chunks when needed, so you don't need to manually configure this behavior.
+Tree Shaking: Like Webpack, Parcel also removes unused code to optimize the final bundle size.
+Why We Need Parcel:
+Simplicity: For developers who want an easy-to-use bundler that doesn’t require a lot of configuration, Parcel is a great choice.
+Fast Setup: You can get a project up and running quickly with Parcel. It detects all necessary files and dependencies automatically.
+Efficient Development Workflow: With features like fast hot module replacement and automatic code splitting, Parcel helps streamline development and improve the overall workflow.
+
+● - What is `.parcel-cache`
+
+The .parcel-cache folder is an internal cache used by Parcel to speed up the build process by storing intermediate build data and assets. You can safely delete it if necessary, though doing so will cause Parcel to rebuild everything from scratch on the next build.
+
+● - What is `npx` ?
+
+npx is a command-line utility that comes bundled with npm (Node Package Manager) starting from npm version 5.2.0. It is used to execute binaries from npm packages without having to install the package globally or even locally in your project.
+
+Key Features of npx:
+Run Packages Without Installing Them Globally:
+
+One of the most useful features of npx is that it allows you to execute a package or command without needing to install it globally on your system. This is especially useful for running one-off commands or using tools that you don't need to install permanently.
+For example, to run create-react-app without installing it globally, you can do:
+
+bash
+Copy
+npx create-react-app my-app
+This will download and run the create-react-app package temporarily, without saving it to your system.
+
+Run Commands from Locally Installed Packages:
+
+If you have a package installed locally in your project (via npm install), npx can be used to run its binaries directly, even if it's not globally installed. This is particularly helpful if you don't want to type long paths to the binaries.
+For example, if you have eslint installed in your project, you can run:
+
+bash
+Copy
+npx eslint .
+This will run eslint without needing to specify its full path, as long as it’s installed locally.
+
+Execute GitHub Gists or Remote Packages:
+
+npx can also execute code directly from a GitHub repository or a URL, which makes it easy to run packages or scripts from the web without installation.
+Example:
+
+bash
+Copy
+npx github:username/repo@version
+This executes the package directly from the GitHub repository.
+
+Version Control:
+
+You can specify a particular version of a package when running it with npx. This is useful if you need to use a specific version of a tool.
+Example:
+
+bash
+Copy
+npx create-react-app@3.4.1 my-app
+This will use version 3.4.1 of create-react-app, even if a newer version is installed on your system.
+
+Convenience for Short-Lived Commands:
+
+If you're only using a package or tool for a short task, npx is great because it saves you from installing and maintaining packages that might only be needed occasionally.
+Why Use npx?
+Avoid Global Installations: npx allows you to run tools that you might not use often, without cluttering your system with global installations.
+Less Setup Required: It reduces the need to manually install and uninstall tools for one-time use cases.
+Consistent Execution: By using npx, you can run commands from the exact version of a package you want (without worrying about version conflicts from global installations).
+Simplifies Usage: It simplifies the execution of tools and packages, especially those used infrequently or only for a single task.
+Examples of npx Usage:
+Run a package without installing it:
+
+bash
+Copy
+npx cowsay "Hello, World!"
+This will run the cowsay package to display "Hello, World!" in a fun cow speech bubble, without installing it globally.
+
+Run a locally installed package: If you have a package like eslint installed locally, you can use npx to run it without navigating to its binary or adding it to scripts in package.json.
+
+bash
+Copy
+npx eslint src/
+Run a specific version of a package:
+
+bash
+Copy
+npx typescript@4.2 --version
+This will run TypeScript version 4.2 without installing it globally.
+
+Run a command from a GitHub repository:
+
+bash
+Copy
+npx github:reactjs/react-devtools
+This will run the react-devtools directly from the GitHub repository without needing to install it.
+
+Summary:
+npx is a command-line utility that allows you to run Node.js packages and commands without needing to install them globally or even locally in your project.
+It helps save time and disk space by eliminating unnecessary installations, and it also supports running specific versions of packages, remote scripts, and GitHub gists.
+In short, npx simplifies the execution of short-lived tasks and tools, making it an essential tool for modern JavaScript development.
+
+● - What is difference between `dependencies` vs `devDependencies`
+
+dependencies: Packages required for the app to run in production (e.g., React, Express).
+devDependencies: Packages needed only for development tasks (e.g., Webpack, Babel, ESLint).
+
+● - What is Tree Shaking?
+
+Tree Shaking is a term commonly used in modern JavaScript development to describe the process of removing unused code from a final bundle during the build process. It's a form of dead code elimination that helps make your JavaScript bundles smaller and more efficient by removing parts of the code that aren't used.
+
+Tree Shaking is a build optimization technique that removes unused code from your JavaScript bundles.
+It works best with ES6 modules (static imports/exports) and is supported by bundlers like Webpack and Rollup.
+By eliminating unused code, tree shaking helps reduce the size of the final bundle, leading to faster load times and better performance.
+Tree shaking can be limited by dynamic imports, CommonJS modules, and side effects in code.
+
+● - What is Hot Module Replacement?
+
+Hot Module Replacement (HMR) is a feature provided by module bundlers like Webpack that allows for the live updating of modules in a running application without requiring a full page reload. This means that when you make changes to your code, only the changed module is updated in the browser, and the state of the application is preserved (such as form inputs, app state, etc.).
+
+Hot Module Replacement (HMR) is a feature of modern bundlers like Webpack that allows developers to update only the changed code in their application without requiring a full page reload.
+It improves development speed, preserves application state, and makes the process of modifying code more efficient.
+It works best with ES6 modules, and configuration may vary based on the tools and frameworks you're using.
+While powerful, HMR may require additional setup and can have limitations in certain situations.
+
+● - List down your favourite 5 superpowers of Parcel and describe any 3 of them in your
+own words.
+
+Zero Configuration -- there is no need create complex configuration for setup and running it
+Fast Hot Module Replacement (HMR) -- changes will be immediately reflected without reloading the page
+Tree Shaking -- the unused code will be deleted for quick loading and performance
+
+● - What is `.gitignore`? What should we add and not add into it?
+
+A .gitignore file is used in Git to tell Git which files or directories to ignore when committing to a repository. It allows you to exclude files and directories that are not necessary for version control, such as temporary files, build artifacts, or sensitive data. This helps keep the repository clean and free from unnecessary clutter while ensuring that only important files are tracked by Git.
+
+When you run git status or commit changes, Git will automatically exclude any files or directories listed in the .gitignore file, so they won’t show up as untracked files or be committed to the repository.
+
+the files which can be regenerates should be added in gitignore
+A .gitignore file helps exclude unnecessary files from version control.
+You should add files like dependencies (node_modules/), build output (dist/, build/), editor settings, temporary files, and sensitive data.
+You should not add source code files, important configuration files, assets, documentation, or Git-related files.
+
+● - What is the difference between `package.json` and `package-lock.json`
+
+package.json allows developers to specify what dependencies they want to install (with version ranges) and defines project scripts and metadata. It's ideal for sharing project information and specifying the general dependencies.
+
+package-lock.json ensures that everyone working on the project (or on different environments) gets the same version of dependencies, including any sub-dependencies, to avoid "it works on my machine" issues. It also speeds up dependency installation by providing a direct map of all dependencies.
+
+Which One Should You Edit?
+Edit package.json: This is where you define your dependencies, scripts, and other project-related information.
+Don't edit package-lock.json manually: It is automatically updated by npm when you install, uninstall, or modify dependencies. Editing it manually can lead to inconsistencies.
+
+● - Why should I not modify `package-lock.json`?
+
+package-lock.json should be left alone because it’s automatically generated and managed by npm.
+Manually modifying it can lead to:
+Inconsistent versions across environments.
+Breaks in the dependency tree.
+Conflicts with package.json.
+Potential issues with package resolution.
+Always allow npm to update the package-lock.json file to ensure consistency and correctness across all development environments.
+
+● - What is `node_modules` ? Is it a good idea to push that on git?
+
+node_modules is a directory in a Node.js project that contains all the installed dependencies required to run the project. These dependencies are installed using npm (Node Package Manager) based on the information in the package.json file. The node_modules directory holds both the primary dependencies (specified in dependencies or devDependencies in package.json) as well as nested dependencies (dependencies of dependencies).
+
+When you run npm install, npm will create the node_modules folder (if it doesn’t already exist) and download all the necessary packages listed in your package.json. This folder can grow quite large since it includes not only the packages you explicitly installed but also their dependencies and sub-dependencies.
+
+Do not push node_modules to Git because:
+It inflates the size of the repository.
+It is easily reproducible via npm install.
+It can cause cross-environment compatibility issues.
+It can lead to merge conflicts.
+Instead, add node_modules to .gitignore and commit package.json and package-lock.json to version control. These files ensure that dependencies can be consistently installed and shared across environments.
+
+● - What is the `dist` folder?
+
+The dist folder (short for distribution) is a commonly used directory in software projects that typically holds the compiled, minified, or bundled version of your source code or assets, ready to be distributed or deployed to a production environment.
+
+In the context of web development (especially front-end development), the dist folder contains the final version of the project, which is optimized for production. It is the output folder generated by various build tools or bundlers like Webpack, Parcel, Rollup, or others.
+
+The dist folder contains optimized, minified, and bundled files that are ready for deployment to production.
+It's typically generated by build tools like Webpack, Parcel, or Rollup.
+The files inside dist are optimized for performance, including minification and bundling of assets.
+Do not push dist to Git because it's easily reproducible and can unnecessarily increase the repository size.
+Add dist to .gitignore and regenerate it as needed by running build commands (npm run build, etc.).
+
+● - What is `browserlists`
+
+browserslist is a configuration tool used to define which browsers and versions your web application or project should support. It's commonly used by build tools like Autoprefixer, Babel, and Webpack to ensure that the code you write works across the browsers you target.
+
+In simpler terms, Browserslist helps you set the list of browsers you want your application to be compatible with, and it ensures that your tools can automatically optimize your code (such as adding CSS prefixes or compiling JavaScript) based on those browser versions.
+
+"browserslist": "last 2 versions"
+
+Browserslist is a tool that helps define which browsers your application should support.
+It simplifies managing browser compatibility by integrating with build tools like Babel, Autoprefixer, and PostCSS.
+You can configure it via package.json, .browserslistrc, or other build tools, and it helps ensure that your code is optimized for the selected browsers.
+
+● Read about: ^ - caret and ~ - tilda
+
+1. Caret (^)
+   The caret (^) allows for minor updates and patches, but it does not allow major version changes. This means that npm will install any version that is compatible with the specified version, but will not automatically update to a version that could potentially introduce breaking changes (i.e., a major version update).
+
+How it works:
+If the version is "^1.2.3":
+npm will install any version >=1.2.3 but <2.0.0.
+This allows for updates to the minor version (e.g., 1.3.0, 1.4.5) and the patch version (e.g., 1.2.4, 1.2.9), but it does not allow upgrading to a new major version (e.g., 2.0.0).
+
+The tilde (~) symbol is more restrictive than the caret (^). It allows for patch updates only, which means it will install versions compatible with the specified patch version, but it will not update to a new minor version.
+
+How it works:
+If the version is "~1.2.3":
+
+npm will install any version >=1.2.3 but <1.3.0.
+This allows for updates to the patch version (e.g., 1.2.4, 1.2.5), but does not allow updates to a new minor version (e.g., 1.3.0).
+
+● Read about Script types in html (MDN Docs)
+
+or JavaScript code, the type attribute is often omitted, as "text/javascript" is the default.
+Using the type attribute with values like "module" or "importmap" enables advanced features such as modules and import maps.
+The type attribute helps the browser understand how to process the script content appropriately.

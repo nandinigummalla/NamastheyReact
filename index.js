@@ -1,3 +1,6 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+
 const heading = React.createElement("h1", { id: "head" }, "I am from React"); // will create a react object with children as attributes and content
 
 // sibling tags are added array
