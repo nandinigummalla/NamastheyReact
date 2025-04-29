@@ -1,0 +1,276 @@
+● What is JSX?
+
+JSX (JavaScript XML) is a syntax extension for JavaScript, primarily used with React. It allows you to write HTML-like code within JavaScript, which makes it easier to create and manage user interfaces in React applications.
+
+Here’s how it works:
+
+- **HTML-like syntax**: JSX looks similar to HTML, but it’s actually JavaScript. You can use tags like `<div>`, `<h1>`, etc., but they are not actual HTML—they're components or elements that React can render.
+- **Embedding JavaScript**: Inside JSX, you can embed JavaScript expressions within curly braces `{}`, which makes it very flexible. For example, you can display dynamic values in your UI using `{someVariable}`.
+
+- **Rendering elements**: When JSX is used, it’s eventually compiled into regular JavaScript by tools like Babel. For example, a JSX element like `<h1>Hello, world!</h1>` gets converted into `React.createElement('h1', null, 'Hello, world!')`.
+
+### Example:
+
+```jsx
+const element = <h1>Hello, world!</h1>;
+```
+
+JSX allows React to efficiently update and render the right UI components when the state changes.
+
+A few key points:
+
+- **JSX is not mandatory**: You can write React components using plain JavaScript, but JSX is a more readable and expressive way to define components.
+- **Babel**: A tool that compiles JSX into vanilla JavaScript that browsers can understand.
+
+● Superpowers of JSX
+
+JSX is pretty powerful when used in React. Here are some of its "superpowers" that make it such an essential part of modern web development:
+
+### 1. **Declarative UI Syntax**
+
+- JSX allows you to define your UI in a declarative way, meaning you describe **what** the UI should look like based on the current state, rather than **how** to build it step by step.
+- It’s like saying, “I want this to look like this when the state is X,” and React takes care of the rest.
+
+### 2. **Seamless JavaScript Integration**
+
+- You can embed JavaScript expressions directly in JSX using `{}`. This allows you to conditionally render elements, map over arrays, or even perform calculations directly in the markup.
+- Example:
+
+  ```jsx
+  const greeting = "Hello";
+  const user = { name: "Alice" };
+
+  const element = (
+    <h1>
+      {greeting}, {user.name}!
+    </h1>
+  );
+  // Renders: <h1>Hello, Alice!</h1>
+  ```
+
+### 3. **Component-Based Structure**
+
+- JSX lets you easily break down your UI into reusable components. Instead of writing repetitive HTML, you can create components that render JSX and pass data (props) to them.
+- This leads to a clean, maintainable, and scalable code structure.
+- Example:
+
+  ```jsx
+  function Welcome(props) {
+    return <h1>Hello, {props.name}</h1>;
+  }
+
+  const element = <Welcome name="Alice" />;
+  ```
+
+### 4. **Supports Conditional Rendering**
+
+- You can easily render different elements based on conditions with JavaScript expressions in JSX.
+- Example:
+  ```jsx
+  const isLoggedIn = true;
+  const element = <h1>{isLoggedIn ? "Welcome back!" : "Please log in"}</h1>;
+  ```
+
+### 5. **Mapping Data to UI Elements**
+
+- With JSX, you can map over arrays and render each element, making dynamic content rendering easier and cleaner.
+- Example:
+  ```jsx
+  const items = ["apple", "banana", "cherry"];
+  const itemList = items.map((item) => <li>{item}</li>);
+  const element = <ul>{itemList}</ul>;
+  ```
+
+### 6. **Self-Closing Tags**
+
+- JSX allows self-closing tags for elements that don’t have children, similar to HTML. This helps keep your code concise and clean.
+- Example:
+  ```jsx
+  const element = <img src="logo.png" alt="Logo" />;
+  ```
+
+### 7. **Automatic `React.createElement()` Translation**
+
+- Under the hood, JSX gets converted into `React.createElement()` calls. This abstraction makes it easier to focus on the structure and logic of your UI without worrying about the underlying JavaScript.
+- Example:
+
+  ```jsx
+  // JSX
+  const element = <h1>Hello, world!</h1>;
+
+  // Compiled JavaScript
+  const element = React.createElement("h1", null, "Hello, world!");
+  ```
+
+### 8. **Error Prevention with `className` and `htmlFor`**
+
+- In JSX, instead of using `class` (which is reserved in JavaScript), it uses `className`, preventing any naming conflicts.
+- Similarly, `for` becomes `htmlFor`, avoiding confusion with JavaScript's `for` loop keyword.
+- Example:
+  ```jsx
+  <div className="container">
+    <label htmlFor="name">Name</label>
+    <input type="text" id="name" />
+  </div>
+  ```
+
+### 9. **Improved Code Readability**
+
+- By using JSX, your code is much closer to the final structure of the UI, making it easier to read and understand, especially when compared to working with JavaScript functions that generate HTML.
+- It provides a more intuitive mapping of UI components to JavaScript logic.
+
+### 10. **Tooling and Optimization**
+
+- Tools like **Babel** (for compiling JSX to JavaScript) and **React DevTools** (for inspecting the component tree) make working with JSX very smooth. They help identify issues quickly and offer performance optimizations like code splitting.
+
+### 11. **Supports Fragments for Multiple Root Elements**
+
+- JSX allows you to return multiple elements without wrapping them in a single parent tag by using **Fragments**.
+- Example:
+  ```jsx
+  return (
+    <>
+      <h1>Hello</h1>
+      <p>Welcome to React</p>
+    </>
+  );
+  ```
+
+In summary, JSX enhances the development process by making the syntax cleaner, more intuitive, and tightly integrated with JavaScript. It enables you to create dynamic, reusable components that update automatically when the state changes, making UI development with React much easier!
+
+● Role of type attribute in script tag? What options can I use there?
+
+The `type` attribute in the `<script>` tag specifies the type of script being used. While it's not strictly necessary in modern HTML (as browsers typically assume JavaScript by default), it was originally used to define the scripting language. Here's a breakdown of its role and possible options:
+
+### **Role of `type` Attribute**
+
+- **Specifying Script Type**: The `type` attribute tells the browser what kind of script is being included. Although JavaScript is the most common script type, there are others too (like JSON, module scripts, etc.).
+- **Default Value**: If the `type` attribute is omitted, the default value is `text/javascript`, meaning the script is expected to be JavaScript.
+
+### **Common Options for `type`**
+
+1. **`text/javascript`** (Default)
+
+   - **Description**: This is the most common and default type for JavaScript.
+   - **Example**:
+     ```html
+     <script type="text/javascript">
+       console.log("Hello, World!");
+     </script>
+     ```
+
+2. **`module`**
+
+   - **Description**: Used for JavaScript **ES6 modules**. When you use the `type="module"` attribute, it indicates that the script contains ES6 module code, which supports `import` and `export` statements.
+   - **Example**:
+     ```html
+     <script type="module">
+       import { greet } from "./greet.js";
+       greet();
+     </script>
+     ```
+   - **Note**: Modules are executed in strict mode, and they are deferred by default (i.e., they do not block HTML parsing).
+
+3. **`application/json`**
+
+   - **Description**: This is used when including JSON data directly inside a `<script>` tag. The script is not executed, but the content is interpreted as JSON.
+   - **Example**:
+     ```html
+     <script type="application/json">
+       { "name": "Alice", "age": 30 }
+     </script>
+     ```
+   - **Use case**: When you need to embed static JSON data in the HTML document, which can then be parsed by JavaScript.
+
+4. **`text/typescript`**
+
+   - **Description**: This was used to specify that the script is written in **TypeScript**. However, this isn't directly supported by browsers. Instead, TypeScript needs to be compiled into JavaScript before it’s executed.
+   - **Example**:
+     ```html
+     <script type="text/typescript">
+       let message: string = "Hello, TypeScript!";
+       console.log(message);
+     </script>
+     ```
+
+5. **`application/javascript`**
+
+   - **Description**: This is an alternative to `text/javascript` and is more semantically correct according to the MIME type standards, but browsers handle both `text/javascript` and `application/javascript` the same way.
+   - **Example**:
+     ```html
+     <script type="application/javascript">
+       console.log("This is JavaScript");
+     </script>
+     ```
+
+6. **Other non-JavaScript types**
+   - Although less common, you could technically use other MIME types if needed for non-JavaScript content inside `<script>` tags, though this is quite rare.
+
+### **Important Notes**
+
+- **Modern JavaScript**: In modern HTML (HTML5), if you don't specify the `type` attribute, the script is assumed to be JavaScript (`type="text/javascript"`), so it’s often omitted.
+- **Module Scripts**: `type="module"` is crucial for using ES6 modules, as it tells the browser to handle the script differently (with support for imports/exports and strict mode).
+
+### **Summary**
+
+The `type` attribute allows you to specify the content type of the script. Most commonly, you'll use `type="text/javascript"` or `type="module"`, but there are other options like `application/json` for embedding data, or `text/typescript` for TypeScript (although the latter needs compilation). For most modern web apps, `type="module"` is becoming more common due to the rise of ES6 modules.
+
+● {TitleComponent} vs {<TitleComponent/>} vs
+{<TitleComponent></TitleComponent>} in JSX
+
+In JSX, all three of the forms you mentioned are related to rendering React components, but they have subtle differences. Here's an explanation of each one:
+
+### 1. **`{TitleComponent}`**
+
+- **What It Is**: This is **incorrect** syntax for rendering a React component in JSX.
+- **Explanation**: In JSX, you can’t just reference a component like `{TitleComponent}` unless you're dealing with a JavaScript expression that returns a component. This will **not** work for rendering the component.
+
+**Example (Incorrect)**:
+
+```jsx
+// This will NOT work
+const element = { TitleComponent };
+```
+
+Instead, React expects the component to be rendered as a tag or inside an expression, like `TitleComponent()`.
+
+### 2. **`{<TitleComponent />}`**
+
+- **What It Is**: This is valid JSX, but the `{}`
+  around it is redundant in most cases. In general, **this is the proper way to render a component** in JSX.
+- **Explanation**: The `{}` braces allow you to embed a JavaScript expression inside JSX. When you write `<TitleComponent />` inside `{}`, you're telling React to evaluate it as a component and render it.
+- **Use Case**: You will use this when you need to pass a component as part of a dynamic expression.
+
+**Example (Correct)**:
+
+```jsx
+const element = <div>{<TitleComponent />}</div>;
+```
+
+**Note**: You don’t typically need the extra `{}` unless you're embedding the component inside a JavaScript expression. So, just writing `<TitleComponent />` would be fine in most cases.
+
+### 3. **`{<TitleComponent></TitleComponent>}`**
+
+- **What It Is**: This is another **valid syntax**, and it's functionally equivalent to `{<TitleComponent />}` for components that don't have children.
+- **Explanation**: This syntax wraps the component with an opening and closing tag, which is valid for both self-closing and non-self-closing components. If your component is a "self-closing" component (i.e., it doesn’t have any content inside), you can omit the closing tag, but React will still render the component.
+- **Use Case**: This form is useful when you want to add children inside the component (but even if no children are passed, it works just fine).
+
+**Example**:
+
+```jsx
+const element = <div>{<TitleComponent></TitleComponent>}</div>;
+```
+
+### Summary of the Three Forms:
+
+1. **`{TitleComponent}`**: Incorrect for rendering components in JSX. React expects components to be used like tags.
+2. **`{<TitleComponent />}`**: Correct and typical way to render a React component inside a JavaScript expression.
+3. **`{<TitleComponent></TitleComponent>}`**: Also correct, functionally equivalent to `{<TitleComponent />}`, and can be useful when you want to pass children to the component.
+
+### When to Use Each:
+
+- **`<TitleComponent />`** is the simplest and most common way to render components.
+- **`{<TitleComponent />}`** is used when you need to embed the component in a JavaScript expression, like inside a function or in a conditional render.
+- **`{<TitleComponent></TitleComponent>}`** is rarely necessary unless you specifically need the structure for children or for clarity.
+
+Let me know if you'd like further examples or clarification on any part!

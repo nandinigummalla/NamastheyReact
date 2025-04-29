@@ -1,4 +1,24 @@
-#head{
+.navbar{
+    border: 2px solid black;
+    display: flex;
+    background-color:beige;
+    height: 50px;
+    width: 100%;
+}
+
+.search{
     text-align: center;
-    color: blueviolet;
+    height: 20px;
+    width: 100px;
+    margin: 10px auto;
+}
+.logo{
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
+.icon{
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
 }
