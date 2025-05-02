@@ -1,30 +1,3 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-// will get the props from parent folder as props
-const ResCard = (props) => {
-  const { resData } = props;
-  const { name, cuisines, avgRating, costForTwo, cloudinaryImageId } =
-    resData?.info;
-  const { slaString } = resData?.info?.sla;
-  return (
-    <div className="res-card">
-      <img
-        className="resimg"
-        src={
-          "https://media-assets.swiggy.com/swiggy/image/upload/" +
-          cloudinaryImageId
-        }
-      />
-      <h4>{name}</h4>
-      <h6>Rating: {avgRating}</h6>
-      <h6>{cuisines.join()}</h6>
-      <h6>{costForTwo}</h6>
-      <h6>Delivery in {slaString}</h6>
-    </div>
-  );
-};
-
 const resArray = [
   {
     "@type": "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
@@ -703,35 +676,4 @@ const resArray = [
   },
 ];
 
-// passing props to component is passing arguments to function
-const Rescontainer = () => (
-  <div className="res-container">
-    {resArray.map((rest) => (
-      <ResCard key={rest.info.id} resData={rest} />
-    ))}
-  </div>
-);
-
-const Header = () => (
-  <div className="header">
-    <img
-      className="logo"
-      src="https://www.shutterstock.com/shutterstock/photos/1900512124/display_1500/stock-vector-logo-templates-with-monogrammed-elements-and-flourish-ornaments-for-restaurants-clubs-boutiques-1900512124.jpg"
-    />
-    <div className="nav-items">
-      <ul>
-        <li>Home</li>
-        <li>Cart</li>
-        <li>About</li>
-      </ul>
-    </div>
-  </div>
-);
-const AppLayout = () => (
-  <div className="applayout">
-    <Header />
-    <Rescontainer />
-  </div>
-);
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />);
+export default resArray;
