@@ -1,0 +1,91 @@
+● What is the difference between Named Export, Default export and \* as export?
+
+In JavaScript (specifically with ES6 modules), there are three common types of exports: **Named Export**, **Default Export**, and **`* as` Export**. Here’s a breakdown of each one:
+
+### 1. **Named Export**
+
+With named exports, you can export multiple values (variables, functions, or classes) from a module. You explicitly name what you are exporting.
+
+#### Example:
+
+```javascript
+// file: math.js
+export const add = (a, b) => a + b;
+export const subtract = (a, b) => a - b;
+```
+
+#### Import:
+
+```javascript
+// file: app.js
+import { add, subtract } from "./math";
+console.log(add(2, 3)); // 5
+console.log(subtract(5, 2)); // 3
+```
+
+### 2. **Default Export**
+
+With default exports, you export a single value from a module. This value can be a function, class, object, etc. The benefit is that you don’t need to use curly braces when importing the value.
+
+#### Example:
+
+```javascript
+// file: greet.js
+const greet = () => console.log("Hello, World!");
+export default greet;
+```
+
+#### Import:
+
+```javascript
+// file: app.js
+import greet from "./greet";
+greet(); // Hello, World!
+```
+
+You can only have one default export per module.
+
+### 3. **`* as` Export**
+
+The `* as` syntax allows you to import everything from a module as a single object, with all named exports grouped together under one namespace.
+
+#### Example:
+
+```javascript
+// file: math.js
+export const add = (a, b) => a + b;
+export const subtract = (a, b) => a - b;
+```
+
+#### Import:
+
+```javascript
+// file: app.js
+import * as math from "./math";
+console.log(math.add(2, 3)); // 5
+console.log(math.subtract(5, 2)); // 3
+```
+
+Here, the `math` object acts like a container that holds all the named exports, so you access them via the `math` object.
+
+### Key Differences:
+
+- **Named Export:** You export specific elements by name, and you import them using the same name.
+- **Default Export:** You export a single value (function, class, object), and you import it without curly braces.
+- **`* as` Export:** You import everything from a module as a single object (namespace).
+
+● What is the importance of config.js file
+
+the config.js file helps with maintaining a clean, organized, and flexible application, allowing easy management of configuration settings, handling multiple environments, and improving security and scalability. It provides a central place to manage your app’s settings while decoupling them from the application’s core logic.
+
+If you’re working on a project, using a configuration file like config.js is a best practice to help ensure your application is maintainable and easy to scale over time.
+
+● What are React Hooks?
+
+React hooks allow developers to write functional components that can handle state, side effects, context, and other advanced features, leading to cleaner, more modular code. They're now the preferred way to write React components due to their simplicity and flexibility.
+useState
+Purpose: useState is used to add state to functional components.
+It allows you to declare a state variable and a function to update that variable.
+
+● Why do we need a useState Hook?
+The useState hook is essential in React because it allows functional components to manage and track state, which was previously only possible in class components. Without useState, functional components would be stateless, meaning they wouldn’t be able to store and manage data that can change over time (like user inputs, fetched data, or any variable that affects the UI).
