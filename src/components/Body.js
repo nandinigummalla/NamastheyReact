@@ -1,26 +1,42 @@
-import { useState } from "react";
-import resArray from "../utils/mockData";
+import { useEffect, useState } from "react";
 import ResCard from "./ResCard";
+import ShimmerUI from "./ShimmerUI";
 // passing props to component is passing arguments to function
 const Body = () => {
-  const [filteredRestaurants, setFilteredRestaurants] = useState(resArray);
+  const [filteredRestaurants, setFilteredRestaurants] = useState();
+  const [resData, setResData] = useState();
   const [searchTerm, setSearchTerm] = useState("");
   const getTopRatedRestaurants = () => {
-    setFilteredRestaurants(
-      filteredRestaurants.filter((res) => res?.info.avgRating > 4)
-    );
+    setFilteredRestaurants(resData?.filter((res) => res?.info?.avgRating > 4));
   };
   const searchRest = () => {
     setFilteredRestaurants(
-      filteredRestaurants.filter((rest) =>
-        rest?.info?.name?.toLowerCase()?.includes(searchTerm.toLowerCase())
+      resData.filter((rest) =>
+        rest?.info?.name?.toLowerCase()?.includes(searchTerm?.toLowerCase())
       )
     );
   };
   const resetFilter = () => {
-    setFilteredRestaurants(resArray);
+    setFilteredRestaurants(resData);
   };
-  return (
+
+  const fetchData = async () => {
+    let resp = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
+    let json = await resp.json();
+    let restResp =
+      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants;
+    setFilteredRestaurants(restResp);
+    setResData(restResp);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return filteredRestaurants ? (
     <div className="body">
       <div className="datafilter">
         <div className="search">
@@ -45,6 +61,8 @@ const Body = () => {
         ))}
       </div>
     </div>
+  ) : (
+    <ShimmerUI />
   );
 };
 export default Body;

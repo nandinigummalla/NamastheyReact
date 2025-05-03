@@ -1,0 +1,810 @@
+● What is a Microservice?
+
+A **microservice** is a software architectural style that structures an application as a collection of loosely coupled, independently deployable services. Each service represents a specific business functionality and can be developed, deployed, and scaled independently of others. Microservices communicate with each other through well-defined APIs (Application Programming Interfaces), typically over HTTP or messaging protocols.
+
+Key characteristics of microservices include:
+
+1. **Independence**: Each microservice is self-contained and operates independently, which means you can update or deploy one service without affecting the rest of the application.
+
+2. **Modularity**: Microservices are modular, meaning they focus on a single functionality or business capability, making the system easier to maintain and extend.
+
+3. **Technology Agnostic**: Microservices can be built using different technologies, programming languages, and databases, as long as they can communicate with each other via APIs.
+
+4. **Scalability**: Because microservices are independent, they can be scaled individually, allowing resources to be allocated efficiently based on demand for each service.
+
+5. **Resilience**: Microservices tend to be more resilient because a failure in one service doesn’t necessarily bring down the entire system.
+
+6. **Continuous Delivery**: Microservices enable frequent updates and deployments, facilitating continuous integration and delivery practices.
+
+For example, an e-commerce website might use microservices for different functionalities like user authentication, product catalog, order processing, and payment. Each of these services could be developed and deployed independently, allowing for better flexibility and scalability.
+
+● What is Monolith architecture?
+
+**Monolith architecture** refers to a software design where an entire application is built as a single, unified unit. In this approach, all the components of the application (such as the user interface, business logic, database access, and other services) are tightly integrated and work together within one codebase and deployment unit.
+
+### Key Characteristics of Monolithic Architecture:
+
+1. **Single Codebase**: All the functionality of the application is bundled together in one codebase. This means the front-end, back-end, and database logic all reside within the same project.
+
+2. **Tightly Coupled**: Components of the application are often interdependent and share the same memory space, making it challenging to modify or scale individual parts of the application without affecting the whole system.
+
+3. **Centralized Deployment**: The entire application is deployed as a single unit. Any updates, even for a small change, require redeploying the entire application.
+
+4. **Single Technology Stack**: A monolithic application typically uses a single technology stack (e.g., Java, Python, or .NET), and all components are built using that stack.
+
+5. **Scalability**: Since all components are tightly coupled, scaling a monolithic application usually involves scaling the whole system, even if only one part of the system requires additional resources.
+
+### Pros of Monolithic Architecture:
+
+- **Simpler to Develop**: Since everything is in one place, it can be easier to build and deploy initially, especially for smaller applications.
+- **Easier to Test**: With everything in one codebase, it can be easier to test because all components are available locally.
+- **Straightforward Deployment**: Only one deployment unit is required, simplifying deployment, especially in smaller teams or organizations.
+
+### Cons of Monolithic Architecture:
+
+- **Limited Scalability**: Scaling a monolith often means scaling the entire application, even if only one part of the system needs more resources.
+- **Tight Coupling**: Changes to one part of the system can affect others, making maintenance and updates challenging.
+- **Slower Development as the System Grows**: As the application grows in size and complexity, adding new features or making updates can become harder to manage due to the tightly coupled nature of the components.
+- **Difficult to Adopt New Technologies**: Adopting new technologies or frameworks within a monolithic structure can be challenging because everything is built around one technology stack.
+
+### Example:
+
+An e-commerce platform built using monolithic architecture would have everything from product listings, user management, payment processing, and order handling contained within a single application. If one part of the application needed an update, the entire system would need to be tested and redeployed.
+
+In contrast, **microservices architecture** would break each of those functions into separate, independently deployable services, allowing for more flexibility and scalability.
+
+In short, monolithic architecture is best suited for smaller, simpler applications but can become complex and difficult to manage as the application grows. Microservices often emerge as a solution when monolithic systems become too difficult to scale and maintain.
+
+● What is the difference between Monolith and Microservice?
+
+The key difference between **Monolithic** and **Microservice** architectures lies in how the application is structured and deployed. Here's a breakdown of the main differences:
+
+### 1. **Structure**:
+
+- **Monolithic**:
+
+  - The entire application is built as a single unit. All components (UI, business logic, database access) are tightly coupled and exist in one codebase.
+  - Example: A simple e-commerce platform where everything (user management, product catalog, order processing) resides in a single application.
+
+- **Microservices**:
+  - The application is broken down into smaller, independent services, each focusing on a specific business functionality (like user authentication, payment processing, or product management).
+  - Example: An e-commerce platform where user management, product catalog, order processing, and payments are separate services, each with its own codebase, database, and deployment cycle.
+
+### 2. **Deployment**:
+
+- **Monolithic**:
+
+  - The entire application is deployed as a single unit. Every update, even a small change, requires redeploying the whole application.
+
+- **Microservices**:
+  - Each service is deployed independently, allowing teams to update or scale individual services without affecting the others. This enables continuous deployment and release cycles for different services.
+
+### 3. **Scalability**:
+
+- **Monolithic**:
+
+  - Scaling typically means replicating the entire application, even if only one part of the system requires more resources. This can lead to inefficiencies.
+
+- **Microservices**:
+  - Microservices can be independently scaled, so you only need to allocate resources to the services that require more processing power, making scaling more efficient.
+
+### 4. **Technology Stack**:
+
+- **Monolithic**:
+
+  - Typically, a monolithic application uses a single technology stack (e.g., Java, Python, .NET), and all components must adhere to it.
+
+- **Microservices**:
+  - Different microservices can use different technologies, databases, and frameworks, allowing each service to be tailored to its specific needs.
+
+### 5. **Development and Maintenance**:
+
+- **Monolithic**:
+
+  - Initially easier to develop but becomes more difficult to maintain and extend as the application grows. Adding new features may introduce dependencies or break other parts of the application.
+
+- **Microservices**:
+  - Each service is independent, which makes it easier to update, test, and maintain. However, managing multiple services can be complex, requiring robust communication, monitoring, and orchestration tools.
+
+### 6. **Fault Isolation**:
+
+- **Monolithic**:
+
+  - A failure in one part of the monolithic application can bring down the entire system.
+
+- **Microservices**:
+  - Failure in one microservice doesn’t necessarily affect the others, which makes the system more resilient.
+
+### 7. **Performance**:
+
+- **Monolithic**:
+
+  - Communication between components is done in-memory within the same application, which is fast and efficient.
+
+- **Microservices**:
+  - Microservices communicate over a network (e.g., REST APIs), which introduces latency. However, this can be mitigated with good design, such as caching or asynchronous messaging.
+
+### 8. **Team Structure**:
+
+- **Monolithic**:
+
+  - Since the entire application is tightly coupled, development teams are often organized to work on the entire system together, making it more difficult to scale the team.
+
+- **Microservices**:
+  - Each microservice can be owned by a small, cross-functional team that is responsible for its full lifecycle (development, testing, deployment, scaling), which allows teams to scale more easily.
+
+### 9. **Example Use Case**:
+
+- **Monolithic**:
+
+  - A small to medium-sized app or a startup where rapid development is important, and the system is not expected to grow very large initially.
+
+- **Microservices**:
+  - Large applications with many components that need to scale independently or have high availability, such as enterprise-level systems, e-commerce platforms, or social networks.
+
+---
+
+### Summary of Differences:
+
+| Feature              | Monolithic                            | Microservices                                |
+| -------------------- | ------------------------------------- | -------------------------------------------- |
+| **Structure**        | Single codebase, tightly coupled      | Independent services, loosely coupled        |
+| **Deployment**       | Single unit, requires full redeploy   | Independent services, deploy individually    |
+| **Scalability**      | Scale the whole system                | Scale individual services                    |
+| **Technology Stack** | Single technology stack               | Multiple technology stacks                   |
+| **Development**      | Easier initially, harder as it grows  | Easier to maintain, more complex management  |
+| **Fault Isolation**  | Failure can bring down the entire app | Failure in one service doesn't affect others |
+| **Performance**      | Faster due to in-memory communication | Communication over network adds latency      |
+| **Team Structure**   | One team for the entire app           | Multiple teams, each focusing on one service |
+
+In summary, **monolithic architecture** is simpler to implement initially, but becomes harder to maintain and scale as the system grows. On the other hand, **microservices** offer better scalability, flexibility, and resilience, but come with added complexity in managing the interactions between services. Microservices are often preferred for large, complex applications that require frequent updates and scaling.
+
+● Why do we need a useEffect Hook?
+
+useEffect hook to manage side effects in functional components. It simplifies component lifecycle management and enables functional components to handle tasks like data fetching, event handling, and other side effects that were previously only possible with class components. The hook also provides automatic cleanup, which helps to prevent memory leaks and keeps the app efficient.
+
+● What is Optional Chaining?
+
+**Optional chaining** is a feature in JavaScript (introduced in **ES2020**) that allows you to safely access deeply nested properties of an object without having to explicitly check if each reference in the chain is valid (i.e., not `null` or `undefined`).
+
+Before optional chaining, if you wanted to access a deeply nested property, you’d have to manually check if each level exists to avoid runtime errors. Optional chaining simplifies this process, making the code cleaner and easier to maintain.
+
+### Syntax:
+
+The syntax for optional chaining uses the **`?.`** operator:
+
+```javascript
+object?.property;
+```
+
+This safely accesses the `property` of `object`. If `object` is `null` or `undefined`, the expression returns `undefined` instead of throwing an error.
+
+### Key Use Cases:
+
+1. **Accessing Nested Properties**:
+
+   - If you're working with an object that has multiple levels of nesting, and you're not sure if some intermediate objects are `null` or `undefined`, optional chaining can be used to safely access the properties without having to manually check each level.
+
+   ```javascript
+   const user = {
+     name: "Alice",
+     address: {
+       street: "123 Main St",
+       city: "Wonderland",
+     },
+   };
+
+   // Safe access using optional chaining
+   const city = user?.address?.city; // "Wonderland"
+
+   // If address is undefined, it would return undefined without throwing an error
+   const zipCode = user?.address?.zipCode; // undefined
+   ```
+
+2. **Calling Functions**:
+
+   - Optional chaining can also be used when calling methods on objects, to ensure the method exists before calling it.
+
+   ```javascript
+   const user = {
+     name: "Bob",
+     greet: function () {
+       return "Hello!";
+     },
+   };
+
+   const greeting = user?.greet?.(); // "Hello!"
+
+   // If greet method is undefined, no error is thrown and it returns undefined
+   const farewell = user?.sayGoodbye?.(); // undefined
+   ```
+
+3. **Accessing Arrays**:
+
+   - You can use optional chaining to access elements of arrays without worrying if the array is `null` or `undefined`.
+
+   ```javascript
+   const users = [
+     { name: "Alice", age: 25 },
+     { name: "Bob", age: 30 },
+   ];
+
+   const firstUser = users?.[0]?.name; // "Alice"
+   const secondUserAddress = users?.[1]?.address?.street; // undefined
+   ```
+
+4. **Combining with Nullish Coalescing (`??`)**:
+
+   - You can use **optional chaining** in combination with the **nullish coalescing operator** (`??`) to provide default values when something is `null` or `undefined`.
+
+   ```javascript
+   const user = { name: "Charlie" };
+
+   const city = user?.address?.city ?? "Default City"; // "Default City"
+   ```
+
+### Why is Optional Chaining Useful?
+
+1. **Avoids Errors**:
+
+   - It helps prevent **TypeError** from occurring when trying to access a property or call a method on `null` or `undefined` objects. Without optional chaining, this would throw an error and stop your code execution.
+
+2. **Cleaner Code**:
+
+   - It makes the code more concise and readable. Without it, you would need multiple `if` or `&&` checks.
+
+   ```javascript
+   // Without optional chaining:
+   const city = user && user.address && user.address.city;
+
+   // With optional chaining:
+   const city = user?.address?.city;
+   ```
+
+3. **Simplifies Deeply Nested Data Handling**:
+   - In applications dealing with complex JSON objects, like data from APIs, optional chaining simplifies accessing nested properties without needing to verify every object’s existence along the way.
+
+### Example:
+
+Imagine you have a deeply nested object and you're trying to access a value:
+
+```javascript
+const data = {
+  user: {
+    profile: {
+      details: {
+        name: "John Doe",
+        address: {
+          city: "New York",
+        },
+      },
+    },
+  },
+};
+
+// Without optional chaining (using multiple checks):
+const city =
+  data &&
+  data.user &&
+  data.user.profile &&
+  data.user.profile.details &&
+  data.user.profile.details.address &&
+  data.user.profile.details.address.city;
+
+// With optional chaining:
+const city = data?.user?.profile?.details?.address?.city; // "New York"
+```
+
+If any part of the chain is `null` or `undefined`, `city` will safely return `undefined` rather than throwing an error.
+
+### Key Points:
+
+- **Syntax**: `?.`
+- It **returns `undefined`** if any part of the chain is `null` or `undefined`, instead of throwing an error.
+- Can be used with **objects**, **arrays**, and **function calls**.
+- Helps **reduce boilerplate code** and **improves code readability**.
+
+Optional chaining is an incredibly useful feature, especially when dealing with uncertain data structures, as it provides a safer and cleaner way to access nested properties.
+
+● What is Shimmer UI?
+
+**Shimmer UI** is a design pattern used to create a visual effect that simulates loading content. It provides users with a placeholder animation that mimics the look of content loading, giving the impression that the app is working and fetching data. This effect is often used as a placeholder for UI elements while actual content is loading in the background, providing a smoother and more engaging user experience.
+
+The term "Shimmer" comes from the animation itself — it often looks like a shimmering, glowing, or sweeping light across the placeholder elements (such as text or images) as they slowly appear to be "filled" with the actual content.
+
+### Key Features of Shimmer UI:
+
+1. **Loading State Representation**: Shimmer UI is used to show that content is being loaded, typically for images, text, or lists.
+2. **Improves User Experience**: Instead of showing a blank screen or static loader (like a spinner or progress bar), Shimmer UI provides a more visually appealing way to indicate that data is being fetched or loaded, keeping the user engaged.
+
+3. **Dynamic Animation**: The shimmer effect is typically a moving gradient or a glowing effect that moves across the placeholder, simulating the loading of content.
+
+4. **Common Use Cases**:
+   - **List/Item Loading**: When fetching data for a list of items (e.g., product listings, social media feeds), shimmer placeholders can represent each item’s image, title, description, etc.
+   - **Image Loading**: If images are large or take time to load, shimmer UI can be used to simulate their appearance until they are fully loaded.
+   - **Text/Content Loading**: Text blocks, headers, or paragraphs can be shown with a shimmer effect while the content is loading.
+
+### Why Use Shimmer UI?
+
+- **Better Perceived Performance**: Users are less likely to feel frustrated when they see a loading animation that resembles real content rather than just a spinner or a blank page. It gives the impression that something is happening, which can make the wait feel shorter.
+- **Smoother User Experience**: It reduces the jarring feeling of seeing sudden content changes or layout shifts when data finally loads.
+
+- **Consistency in Design**: It ensures the layout remains consistent while content is being fetched, reducing the risk of content jumping around as it's loaded in.
+
+### Example:
+
+Consider an app that fetches a list of items from an API. While the data is being loaded, the UI might show shimmer placeholders for each item in the list:
+
+- A rectangle with a shimmering effect that will eventually be replaced with an actual image.
+- Text placeholders that appear as glowing bars, which will later be replaced with titles or descriptions.
+
+### Example Shimmer UI:
+
+Here’s an example of how shimmer UI might look:
+
+- **Before Loading**: Empty rectangular placeholders with a shimmering animation sweeping across them.
+- **After Loading**: The shimmer effect fades, and the actual content (e.g., images, text) appears in place.
+
+### Implementing Shimmer UI:
+
+Shimmer UI can be implemented using various techniques:
+
+- **CSS Animations**: You can create a shimmer effect using CSS keyframes to animate a linear gradient that moves across the placeholder.
+- **Libraries and Frameworks**: There are libraries and components built for various frameworks like React, Angular, and Vue.js that make implementing shimmer effects easier (e.g., `react-content-loader` or `react-shimmer`).
+
+### Example in CSS:
+
+```css
+@keyframes shimmer {
+  0% {
+    background-position: -1500px 0;
+  }
+  100% {
+    background-position: 1500px 0;
+  }
+}
+
+.shimmer {
+  display: inline-block;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  width: 100%;
+  height: 20px; /* Example height for a text placeholder */
+}
+```
+
+```html
+<div class="shimmer"></div>
+```
+
+### Conclusion:
+
+Shimmer UI provides a smooth, visually engaging way to show users that content is being loaded. It improves user experience by reducing the perceived wait time and making the loading process feel more natural. Instead of showing a static loader or blank screen, the shimmer effect offers dynamic placeholders, giving the impression of content progressively appearing.
+
+● What is the difference between JS expression and JS statement
+
+Expression: A unit of code that produces and returns a value (like 5 + 3 or x = 10).
+Statement: A unit of code that performs an action or control flow (like let x = 10 or a for loop).
+In summary, expressions evaluate to a value and can be used within other expressions, whereas statements are used to execute logic or actions and do not return anything.
+
+● What is Conditional Rendering, explain with a code example
+
+**Conditional Rendering** in React refers to the process of displaying different UI elements based on certain conditions. It is similar to how conditions work in JavaScript (like `if` statements), but in React, it is used to decide which components or elements to render at any given time.
+
+In React, you can use **conditional rendering** with:
+
+- **`if` statements**
+- **Ternary operators**
+- **Logical AND (`&&`) operators**
+
+This allows you to render content dynamically based on certain conditions such as state values, props, or other dynamic conditions.
+
+### Common Ways to Implement Conditional Rendering in React:
+
+#### 1. **Using `if` Statement**:
+
+You can use a regular `if` statement to determine which component or JSX to render.
+
+```javascript
+import React, { useState } from "react";
+
+function UserGreeting() {
+  return <h1>Welcome Back!</h1>;
+}
+
+function GuestGreeting() {
+  return <h1>Please Sign Up.</h1>;
+}
+
+function Greeting() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  if (isLoggedIn) {
+    return <UserGreeting />;
+  } else {
+    return <GuestGreeting />;
+  }
+}
+
+export default Greeting;
+```
+
+In this example, if the `isLoggedIn` state is `true`, the `UserGreeting` component will render. Otherwise, the `GuestGreeting` component will be shown.
+
+#### 2. **Using Ternary Operator**:
+
+The **ternary operator** is a concise way to write conditional rendering in JSX. It’s typically used for simple conditions.
+
+```javascript
+import React, { useState } from "react";
+
+function Greeting() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  return (
+    <div>{isLoggedIn ? <h1>Welcome Back!</h1> : <h1>Please Sign Up.</h1>}</div>
+  );
+}
+
+export default Greeting;
+```
+
+In this example, the ternary operator is used to conditionally render either the "Welcome Back!" message or the "Please Sign Up." message based on the `isLoggedIn` state.
+
+#### 3. **Using Logical AND (`&&`) Operator**:
+
+You can use the **logical AND** (`&&`) operator to render content only when the condition is `true`. This approach is particularly useful for rendering elements like **optional UI elements** or **null values** (i.e., not rendering anything).
+
+```javascript
+import React, { useState } from "react";
+
+function Greeting() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  return (
+    <div>
+      {isLoggedIn && <h1>Welcome Back!</h1>}
+      {/* If isLoggedIn is false, nothing will be rendered */}
+    </div>
+  );
+}
+
+export default Greeting;
+```
+
+In this example, the **"Welcome Back!"** message will only render if `isLoggedIn` is `true`. If `isLoggedIn` is `false`, nothing will be displayed.
+
+#### 4. **Rendering Multiple Components Based on Conditions**:
+
+You can combine conditional rendering with other components or logic to render multiple things depending on different conditions.
+
+```javascript
+import React, { useState } from "react";
+
+function Greeting() {
+  const [userRole, setUserRole] = useState("guest"); // guest, admin, or user
+
+  let greetingMessage;
+
+  if (userRole === "guest") {
+    greetingMessage = <h1>Welcome, Guest! Please Sign Up.</h1>;
+  } else if (userRole === "user") {
+    greetingMessage = <h1>Welcome, User!</h1>;
+  } else if (userRole === "admin") {
+    greetingMessage = <h1>Welcome, Admin!</h1>;
+  }
+
+  return <div>{greetingMessage}</div>;
+}
+
+export default Greeting;
+```
+
+In this example, depending on the value of `userRole`, a different greeting message will be displayed.
+
+### Summary:
+
+- **Conditional Rendering** in React allows you to render different UI elements based on certain conditions.
+- You can achieve conditional rendering in React using:
+  - **`if` statements** for more complex logic.
+  - **Ternary operators** for simpler, inline conditional rendering.
+  - **Logical AND (`&&`) operator** for rendering elements based on a boolean condition.
+
+Conditional rendering is an important tool in React to display dynamic content based on state, props, or other factors, ensuring that your application reacts to changes in real-time.
+
+● What is CORS?
+
+**CORS** (Cross-Origin Resource Sharing) is a security feature implemented by web browsers that allows or restricts web applications running at one origin (domain) to make requests to resources on a different origin (domain).
+
+### Origins
+
+- An **origin** is defined by the combination of **protocol**, **domain**, and **port**. For example:
+  - `https://example.com` is one origin.
+  - `https://api.example.com` is a different origin, even if it’s under the same parent domain.
+  - `http://example.com` is a different origin because the protocol is different (HTTP vs. HTTPS).
+
+### The Problem: Same-Origin Policy
+
+By default, web browsers enforce a **same-origin policy**, which means a web page can only make requests (such as API calls or loading resources like images, scripts, etc.) to the same origin it was loaded from. This is done for **security reasons**, to prevent malicious websites from accessing sensitive data from another website without permission.
+
+However, this default behavior can be problematic in modern web development where different parts of a web app may reside on different domains (e.g., a frontend app and backend API). This is where **CORS** comes in.
+
+### What is CORS?
+
+**CORS** is a mechanism that allows **web servers** to specify which domains are permitted to access their resources. It involves the use of HTTP headers to manage cross-origin requests.
+
+When a web page makes a cross-origin request (e.g., from `https://example.com` to `https://api.example.com`), the browser sends a preflight request (an initial `OPTIONS` request) to the server to ask for permission. If the server allows the request, it responds with appropriate CORS headers, which then allow the browser to proceed with the actual request.
+
+### Key CORS Headers:
+
+1. **`Access-Control-Allow-Origin`**:
+
+   - This header specifies which domains are allowed to access the resource. It can be a specific origin or `*` (which means any origin is allowed).
+
+   ```http
+   Access-Control-Allow-Origin: https://example.com
+   ```
+
+   or
+
+   ```http
+   Access-Control-Allow-Origin: *
+   ```
+
+   - If this header is absent or the domain is not listed, the browser will block the request.
+
+2. **`Access-Control-Allow-Methods`**:
+
+   - This header specifies which HTTP methods (e.g., `GET`, `POST`, `PUT`, etc.) are allowed when accessing the resource.
+
+   ```http
+   Access-Control-Allow-Methods: GET, POST, PUT
+   ```
+
+3. **`Access-Control-Allow-Headers`**:
+
+   - This header specifies which HTTP headers can be used during the actual request.
+
+   ```http
+   Access-Control-Allow-Headers: Content-Type, Authorization
+   ```
+
+4. **`Access-Control-Allow-Credentials`**:
+
+   - This header indicates whether or not cookies or authentication information should be sent with the request. By default, browsers do not send credentials like cookies with cross-origin requests unless this header is explicitly set to `true`.
+
+   ```http
+   Access-Control-Allow-Credentials: true
+   ```
+
+5. **`Access-Control-Expose-Headers`**:
+
+   - This header tells the browser which headers should be exposed to the client-side JavaScript code. Without this header, only a limited set of headers is accessible.
+
+   ```http
+   Access-Control-Expose-Headers: X-Custom-Header
+   ```
+
+6. **`Access-Control-Max-Age`**:
+   - This header defines how long the results of a preflight request can be cached by the browser.
+   ```http
+   Access-Control-Max-Age: 3600  // 1 hour
+   ```
+
+### Preflight Request
+
+When a request is "complex" (e.g., it uses methods other than `GET` or `POST`, or it includes custom headers like `Authorization`), the browser sends a **preflight** request. This is an `OPTIONS` request sent to the server to check if the actual request is safe to send.
+
+Example of a preflight request:
+
+```http
+OPTIONS /data HTTP/1.1
+Host: api.example.com
+Origin: https://example.com
+Access-Control-Request-Method: POST
+Access-Control-Request-Headers: Content-Type
+```
+
+The server will respond to the preflight request with headers that either allow or deny the actual request:
+
+```http
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: https://example.com
+Access-Control-Allow-Methods: GET, POST
+Access-Control-Allow-Headers: Content-Type
+```
+
+### CORS Example:
+
+1. **Frontend (JavaScript) Request**:
+
+```javascript
+fetch("https://api.example.com/data", {
+  method: "GET",
+  headers: {
+    Authorization: "Bearer token123",
+    "Content-Type": "application/json",
+  },
+  credentials: "include", // To send cookies or authentication info
+})
+  .then((response) => response.json())
+  .then((data) => console.log(data))
+  .catch((error) => console.error("Error:", error));
+```
+
+2. **Server Response (with CORS headers)**:
+
+```http
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: https://example.com
+Access-Control-Allow-Methods: GET, POST, PUT
+Access-Control-Allow-Headers: Content-Type, Authorization
+Access-Control-Allow-Credentials: true
+```
+
+### Why CORS is Important?
+
+- **Security**: CORS prevents websites from making unauthorized requests to other websites on behalf of the user (e.g., stealing data).
+- **Flexible Communication**: CORS allows web applications hosted on different domains to interact securely, enabling the development of modern web apps with separate frontends and backends, or third-party integrations like APIs.
+
+### Common Issues with CORS:
+
+1. **CORS Errors**: If the server does not send the required CORS headers or the headers do not match the requesting origin, the browser will block the request and show a CORS error in the console.
+
+   - Example error: `Access to XMLHttpRequest at 'https://api.example.com/data' from origin 'https://example.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.`
+
+2. **Misconfigured Servers**: A server needs to correctly handle the CORS headers. For instance, when making a request from a frontend hosted on `https://example.com` to an API hosted on `https://api.example.com`, the API must include the `Access-Control-Allow-Origin` header in its response.
+
+### Conclusion:
+
+**CORS** is a security mechanism that enables web applications running on one domain to request resources from another domain in a secure manner. It prevents unauthorized cross-origin requests by using HTTP headers, allowing only trusted origins to interact with the server. It’s essential in modern web development for enabling safe and controlled interactions between client-side applications and APIs across different domains.
+
+● What is async and await?
+
+**`async`** and **`await`** are modern JavaScript keywords used to work with asynchronous code in a more **synchronous-like** fashion. They are part of JavaScript's **async/await** syntax introduced in **ES2017 (ES8)**, which simplifies working with **Promises**.
+
+Before `async` and `await`, we used **Promises** and **callbacks** to handle asynchronous code, but they could sometimes result in messy, hard-to-read code, especially with deeply nested callbacks (known as "callback hell"). `async` and `await` make the code cleaner and more readable.
+
+### Key Concepts:
+
+1. **`async`**:
+
+   - The `async` keyword is used to **define a function** that will always return a **Promise**. Even if the function doesn't explicitly return a promise, it wraps the return value in a promise.
+   - When a function is marked as `async`, it allows you to use the `await` keyword inside it.
+
+   **Example**:
+
+   ```javascript
+   async function fetchData() {
+     return "Data received"; // Implicitly returns a Promise
+   }
+   ```
+
+   This is the same as writing:
+
+   ```javascript
+   function fetchData() {
+     return Promise.resolve("Data received");
+   }
+   ```
+
+2. **`await`**:
+
+   - The `await` keyword can only be used **inside an `async` function**. It pauses the execution of the `async` function and waits for the **Promise** to resolve (or reject) before continuing with the rest of the code.
+   - `await` makes asynchronous code look and behave more like **synchronous** code, improving readability.
+
+   **Example**:
+
+   ```javascript
+   async function fetchData() {
+     let data = await fetch("https://jsonplaceholder.typicode.com/posts");
+     let json = await data.json(); // Waits until the Promise resolves
+     return json;
+   }
+   ```
+
+   In this example:
+
+   - The `fetch()` method returns a Promise, and `await` waits until it resolves.
+   - Once the first Promise resolves, the code continues and waits for the second `await` to resolve.
+
+### How `async` and `await` Work:
+
+- **Async functions always return a Promise**:
+
+  - If the function returns a value directly, it’s automatically wrapped in a `Promise`.
+  - If the function throws an error, the Promise is rejected with that error.
+
+- **Await pauses the function execution** until the Promise resolves or rejects, then continues with the result.
+
+### Example with `async` and `await`:
+
+```javascript
+// Simulate a delay with a Promise
+function simulateFetchData() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("Data fetched");
+    }, 2000);
+  });
+}
+
+async function fetchData() {
+  try {
+    console.log("Fetching data...");
+    let data = await simulateFetchData(); // Waits for Promise to resolve
+    console.log(data); // Logs: "Data fetched"
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+fetchData(); // Calls the async function
+```
+
+### Explanation:
+
+1. `simulateFetchData()` returns a Promise that resolves after a delay (simulating data fetching).
+2. The `fetchData()` function is marked as `async`, allowing us to use `await` inside it.
+3. When `await simulateFetchData()` is called, JavaScript will wait for the Promise to resolve before continuing to the next line.
+4. The result of the `await` (i.e., `"Data fetched"`) is logged to the console after 2 seconds.
+
+### Error Handling with `async` and `await`:
+
+You can handle errors in asynchronous functions using `try...catch` blocks, just like you would in synchronous code.
+
+```javascript
+async function fetchData() {
+  try {
+    let response = await fetch("https://api.example.com/data");
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    let data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+```
+
+### Benefits of `async` and `await`:
+
+1. **Simplicity**: Code looks synchronous and is easier to understand compared to using `.then()` and `.catch()` with Promises.
+2. **Error Handling**: You can use `try...catch` blocks for handling errors, making the code more natural and readable.
+3. **Avoids Callback Hell**: Unlike nested callbacks, `async/await` results in flatter code with better readability.
+
+### When to Use `async/await`:
+
+- Use `async/await` for **sequential asynchronous operations**, i.e., when each operation depends on the result of the previous one.
+- If you don’t need to manage the flow of asynchronous operations as sequential (parallel), Promises (`.then()`) or `Promise.all()` may be more suitable.
+
+### Example of Parallel Execution:
+
+```javascript
+async function fetchData() {
+  let user = fetch("https://jsonplaceholder.typicode.com/users");
+  let posts = fetch("https://jsonplaceholder.typicode.com/posts");
+
+  // Wait for both promises to resolve in parallel
+  let [userData, postData] = await Promise.all([user, posts]);
+
+  console.log("User data:", await userData.json());
+  console.log("Posts data:", await postData.json());
+}
+
+fetchData();
+```
+
+Here, `Promise.all()` allows us to run both `fetch()` requests in parallel, and `await` waits for both Promises to resolve before continuing.
+
+### Summary:
+
+- **`async`**: Defines an asynchronous function that always returns a Promise.
+- **`await`**: Pauses the execution of the `async` function until the Promise resolves or rejects, making asynchronous code behave more like synchronous code.
+
+Using `async` and `await` improves readability and error handling in asynchronous JavaScript code, making it much easier to understand and work with compared to callbacks and `.then()` chains.
+
+● What is the use of `const json = await data.json();` in getRestaurants()
+const json = await data.json(); is used to parse the response body of a fetch() call, converting it from a JSON-formatted string into a JavaScript object, which can then be used in your application.
