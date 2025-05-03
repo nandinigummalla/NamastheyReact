@@ -1,0 +1,193 @@
+● What are various ways to add images into our App? Explain with code examples
+
+In HTML, there are several ways to add images to your web app. Below are the various methods and corresponding examples for each approach:
+
+### 1. **Using the `<img>` Tag (Static Images)**
+
+This is the most straightforward way to add an image to your web app. You can specify the image source using the `src` attribute and include alternative text using the `alt` attribute.
+
+#### Example:
+
+```html
+<img src="images/logo.png" alt="Website Logo" width="200" height="100" />
+```
+
+**Explanation:**
+
+- `src`: Path to the image file (relative or absolute URL).
+- `alt`: Text that describes the image. It's displayed if the image fails to load.
+- `width` and `height`: Define the size of the image in pixels (optional).
+
+### 2. **Using CSS (Background Images)**
+
+If you want to use images as background images, you can add them using CSS. This method allows you to style images and control their position, size, and other properties.
+
+#### Example:
+
+```html
+<div class="image-container"></div>
+
+<style>
+  .image-container {
+    width: 300px;
+    height: 200px;
+    background-image: url("images/background.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+</style>
+```
+
+**Explanation:**
+
+- `background-image`: Specifies the path to the image.
+- `background-size: cover`: Ensures the image covers the entire container while maintaining its aspect ratio.
+- `background-position: center`: Centers the image in the container.
+
+### 3. **Using Images with JavaScript (Dynamically Adding Images)**
+
+You can use JavaScript to dynamically add an image to the page. This method is useful when you want to load images based on user interaction or events.
+
+#### Example:
+
+```html
+<button onclick="addImage()">Click to Add Image</button>
+<div id="image-container"></div>
+
+<script>
+  function addImage() {
+    var img = document.createElement("img");
+    img.src = "images/dynamic-image.jpg";
+    img.alt = "Dynamically added image";
+    img.width = 300;
+    img.height = 200;
+    document.getElementById("image-container").appendChild(img);
+  }
+</script>
+```
+
+**Explanation:**
+
+- `document.createElement('img')`: Creates an image element.
+- `img.src`: Sets the source of the image.
+- `appendChild(img)`: Adds the image element to the `image-container` div when the button is clicked.
+
+### 4. **Using `<picture>` Element (Responsive Images)**
+
+The `<picture>` element allows you to serve different images based on the screen size or device capabilities. It is especially useful for responsive designs.
+
+#### Example:
+
+```html
+<picture>
+  <source srcset="images/large-image.jpg" media="(min-width: 800px)" />
+  <source srcset="images/small-image.jpg" media="(max-width: 799px)" />
+  <img src="images/default-image.jpg" alt="Responsive Image" />
+</picture>
+```
+
+**Explanation:**
+
+- `<source>`: Specifies different image sources for different screen sizes using the `srcset` attribute.
+- `media`: Specifies the conditions under which a particular image source should be used (e.g., based on viewport width).
+- `<img>`: A fallback image to display if none of the sources match the conditions.
+
+### 5. **Using Data URLs (Embedding Images in HTML)**
+
+You can embed images directly into your HTML using Data URLs. This method is useful for small images, such as icons or logos, that you want to include directly in the HTML without making additional HTTP requests.
+
+#### Example:
+
+```html
+<img
+  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA..."
+  alt="Embedded Image"
+/>
+```
+
+**Explanation:**
+
+- `data:image/png;base64,`: The Data URL scheme, which contains the base64-encoded image data.
+- The base64 string represents the image content.
+
+**Note:** This method is efficient for small images but can increase the size of your HTML file for large images.
+
+### 6. **Using `<svg>` for Scalable Vector Graphics**
+
+SVG (Scalable Vector Graphics) allows you to embed vector images directly in HTML. SVG images are resolution-independent, making them ideal for logos, icons, and other graphics that need to scale across devices.
+
+#### Example:
+
+```html
+<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+</svg>
+```
+
+**Explanation:**
+
+- The `<svg>` element is used to define an SVG image.
+- Inside the `<svg>`, you can use shapes like `<circle>`, `<rect>`, etc., to draw graphics.
+
+### 7. **Using `object` or `embed` Elements for Embedding Images (e.g., SVG or PDF)**
+
+If you want to embed external files like SVG, PDF, or other types of media, you can use the `<object>` or `<embed>` elements.
+
+#### Example (Using `<object>`):
+
+```html
+<object
+  data="images/illustration.svg"
+  type="image/svg+xml"
+  width="300"
+  height="200"
+>
+  Your browser does not support SVG.
+</object>
+```
+
+#### Example (Using `<embed>`):
+
+```html
+<embed src="images/illustration.svg" width="300" height="200" />
+```
+
+**Explanation:**
+
+- `<object>`: Used for embedding external files and offers more control over handling the file (fallback content can be provided).
+- `<embed>`: Simple method to embed an external file (less control over fallback content).
+
+---
+
+### Conclusion
+
+In HTML, you can add images in various ways based on your needs:
+
+- **Simple `<img>` tag** for static images.
+- **CSS background images** for styling.
+- **JavaScript** for dynamic image loading.
+- **`<picture>` element** for responsive images.
+- **Data URLs** for embedding small images directly.
+- **SVG** for scalable vector images.
+- **`object` and `embed` elements** for embedding other media like SVGs or PDFs.
+
+These methods allow you to effectively display images in web apps based on different use cases.
+
+● What would happen if we do console.log(useState())?
+
+calling console.log(useState()) would output an array where the first element is undefined (unless a value is passed to useState()), and the second element is a function for updating the state.
+
+● How will useEffect behave if we don't add a dependency array ?
+
+Without a dependency array: The effect runs after every render.
+With an empty dependency array ([]): The effect runs only once after the initial mount.
+With dependencies ([dependency]): The effect runs only when the specified dependency values change.
+
+● What is SPA?
+
+A Single Page Application (SPA) enhances the user experience by providing faster, smoother interactions without reloading entire web pages. By utilizing AJAX for dynamic content loading and client-side routing, SPAs can offer highly responsive and engaging web applications. However, they come with challenges like SEO optimization and initial load performance, which can be mitigated with the right techniques and tools.
+
+● What is difference between Client Side Routing and Server Side Routing?
+
+Client-Side Routing is used in SPAs where the routing is handled in the browser. It provides a smoother and faster user experience but can pose challenges for SEO and the initial load.
+Server-Side Routing is used in traditional multi-page applications (MPAs) where the server is responsible for delivering a new page on every request. It's better for SEO and simpler to set up, but navigation can be slower due to full-page reloads.
