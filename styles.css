@@ -113,7 +113,7 @@
     border: 1px solid black;
     box-shadow: 10px 10px #f0f0f0;
     width: 30%;
-    margin: 10px;
+    margin: 10px auto;
     padding: 10px;
     border-radius: 10px;
 }
@@ -124,9 +124,9 @@
 
 .orderdesc{
     border: 1px solid black;
-    margin: 25px;
+    margin: 25px auto;
     padding: 10px;
-    width: 20%;
+    width: 50%;
     box-shadow: 15px 15px #f0f0f0;
     background-color: #faf8f8;
     border-radius: 10px;
@@ -140,5 +140,24 @@
 
 .restDetail{
     align-items: center;
+    text-align: center;
+    border: 2px solid black;
+    margin: 20px auto;
+    width:  50%;
+    border-radius: 10px;
+    box-shadow: 15px 15px #f0f0f0;
+
+
 }
 
+.userCard{
+    border: 1px solid black;
+    width:  50%;
+    margin: 10px auto;
+    box-shadow: 15px 15px #f0f0f0;
+    text-align: center;
+}
+
+.about{
+    text-align: center;
+}
