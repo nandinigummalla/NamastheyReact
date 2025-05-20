@@ -1,10 +1,12 @@
 import { use, useEffect, useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router";
+import useOnlineStatus from "../utils/useOnineStatus";
 
 // statevaraibles shouldn't be created out of the component and also shoudn't be created in loops or conditions it will make inconsistency to teh app
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
+  const onlineStatus = useOnlineStatus();
 
   // useEffect(() => console.log("useEffect rendered"), [])  --  useeffect cbf will be called after initial render of the page if empty array [] is passed as second argument
   // useEffect(() => console.log("useEffect rendered"))  -- useeffect cbf will be called after every render of the page if there is no second argument
@@ -17,6 +19,7 @@ const Header = () => {
       <img className="logo" src={LOGO_URL} />
       <div className="nav-items">
         <ul>
+          <li>OnlineStatus: {onlineStatus ? "✔️" : "🔴"}</li>
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -25,6 +28,9 @@ const Header = () => {
           </li>
           <li>
             <Link to="/contact">Contact</Link>
+          </li>
+          <li>
+            <Link to="/grocery">Grocery</Link>
           </li>
           <li>Cart</li>
           <li>

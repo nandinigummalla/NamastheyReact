@@ -2,11 +2,20 @@ import { useEffect, useState } from "react";
 import ResCard from "./ResCard";
 import ShimmerUI from "./ShimmerUI";
 import { Link } from "react-router";
+import useRestData from "../utils/useRestData";
+import useOnlineStatus from "../utils/useOnineStatus";
 // passing props to component is passing arguments to function
 const Body = () => {
-  const [filteredRestaurants, setFilteredRestaurants] = useState();
-  const [resData, setResData] = useState();
+  const restaurantData = useRestData();
+  const [filteredRestaurants, setFilteredRestaurants] = useState(null);
+  const [resData, setResData] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const onlineStatus = useOnlineStatus();
+
+  useEffect(() => {
+    setFilteredRestaurants(restaurantData);
+    setResData(restaurantData);
+  }, [restaurantData]);
 
   const getTopRatedRestaurants = () => {
     setFilteredRestaurants(resData?.filter((res) => res?.info?.avgRating > 4));
@@ -22,17 +31,13 @@ const Body = () => {
     setFilteredRestaurants(resData);
   };
 
-  const fetchData = async () => {
-    let resp = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.406498&lng=78.47724389999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+  if (!onlineStatus) {
+    return (
+      <div>
+        <h1>OOPS your internet is not working</h1>
+      </div>
     );
-    let json = await resp?.json();
-    let restResp =
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants;
-    setFilteredRestaurants(restResp);
-    setResData(restResp);
-  };
+  }
 
   // need to add scroll functionality calling the belowapi
   // const getScrollRestData = async () => {
@@ -65,10 +70,6 @@ const Body = () => {
   //   const json = resp.json();
   //   console.log(json);
   // };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   // conditional Rendering - rendering basedon the conditions
   return filteredRestaurants ? (
