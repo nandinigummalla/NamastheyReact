@@ -73,28 +73,42 @@ const Body = () => {
 
   // conditional Rendering - rendering basedon the conditions
   return filteredRestaurants ? (
-    <div className="body">
-      <div className="datafilter">
-        <div className="search">
+    <div className="m-5">
+      <div className="flex justify-between">
+        <div className="flex">
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search restaurants"
+            className="border-2"
           />
-          <button onClick={searchRest}>Search</button>
+          <button
+            className="m-2 p-2 rounded-xl bg-green-300"
+            onClick={searchRest}
+          >
+            Search
+          </button>
         </div>
-        <div className="filter">
-          <button onClick={getTopRatedRestaurants}>
+        <div>
+          <button
+            className="p-2 m-2 rounded-2xl bg-sky-300 cursor-pointer"
+            onClick={getTopRatedRestaurants}
+          >
             Top Rated Restaurants
           </button>
-          <button onClick={resetFilter}>Reset</button>
+          <button
+            className="bg-red-100 rounded-2xl p-2 cursor-pointer"
+            onClick={resetFilter}
+          >
+            Reset
+          </button>
         </div>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {filteredRestaurants?.map((rest) => (
           <Link
-            className="resLin"
+            className="m-5 hover:bg-gray-200 hover:border-1 hover:rounded-2xl"
             key={rest?.info?.id}
             to={`/restaurant/${rest?.info?.id}`}
           >

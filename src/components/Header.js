@@ -15,35 +15,32 @@ const Header = () => {
   // useEffect(() => console.log("useEffect rendered"), []);
   // console.log("header rendered");
   return (
-    <div className="header">
-      <img className="logo" src={LOGO_URL} />
-      <div className="nav-items">
-        <ul>
-          <li>OnlineStatus: {onlineStatus ? "✔️" : "🔴"}</li>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/contact">Contact</Link>
-          </li>
-          <li>
-            <Link to="/grocery">Grocery</Link>
-          </li>
-          <li>Cart</li>
-          <li>
-            <button
-              onClick={() =>
-                setBtnName(btnName === "Login" ? "Logout" : "Login")
-              }
-            >
-              {btnName}
-            </button>
-          </li>
-        </ul>
-      </div>
+    <div className="flex justify-between bg-zinc-300 shadow-xl">
+      <img className="size-20 m-1" src={LOGO_URL} />
+      <ul className="flex justify-between p-1 text-center">
+        <li className="p-5 m-1">OnlineStatus: {onlineStatus ? "✔️" : "🔴"}</li>
+        <li className="p-5 m-1">
+          <Link to="/">Home</Link>
+        </li>
+        <li className="p-5 m-1">
+          <Link to="/about">About</Link>
+        </li>
+        <li className="p-5 m-1">
+          <Link to="/contact">Contact</Link>
+        </li>
+        <li className="p-5 m-1">
+          <Link to="/grocery">Grocery</Link>
+        </li>
+        <li className="p-5 m-1">Cart</li>
+        <li className="p-5 m-1">
+          <button
+            className="rounded-lg p-1 border-1 cursor-pointer"
+            onClick={() => setBtnName(btnName === "Login" ? "Logout" : "Login")}
+          >
+            {btnName}
+          </button>
+        </li>
+      </ul>
     </div>
   );
 };

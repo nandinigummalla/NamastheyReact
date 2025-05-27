@@ -31,13 +31,13 @@ class UserClass extends React.Component {
 
     const { name, repos_url, avatar_url, followers } = this.state.userDetail;
     return (
-      <div className="userCard">
+      <div className="shadow-lg hover:shadow-2xl">
         {/* <span>Count is {count} </span>
         <button onClick={() => this.setState({ count: this.state.count + 1 })}>
           Click
         </button> */}
         <h1>{name}</h1>
-        <img className="userImg" src={avatar_url} />
+        <img className="m-5" src={avatar_url} />
         <h3>
           <a href={repos_url}>Repositories</a>
         </h3>

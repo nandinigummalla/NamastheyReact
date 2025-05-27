@@ -9,3 +9,5 @@ React.render(createdElement) - this will convert the object to html and loads on
 React.root(element which needs to be considered as root) -- this will create a root element in react and will replace the html root
 
 As this is very complex and not easy for the users to use it so jsx comes into picture to make it ease
+
+tailwindcss with version 4.16 and above had issues with parcel download the previous versions only as per documentation the steps will work

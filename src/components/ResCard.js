@@ -8,8 +8,11 @@ const ResCard = (props) => {
   // optional chaining
   const { slaString } = resData?.info?.sla;
   return (
-    <div className="res-card">
-      <img className="resimg" src={CDN_URL + cloudinaryImageId} />
+    <div className="border-1 p-5 w-60 h-full text-center shadow-xl rounded-xl">
+      <img
+        className="size-50 rounded-xl my-2"
+        src={CDN_URL + cloudinaryImageId}
+      />
       <h4>{name}</h4>
       <h6>Rating: {avgRating}</h6>
       <h6>{cuisines.join(", ")}</h6>
