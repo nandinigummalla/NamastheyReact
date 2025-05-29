@@ -1,12 +1,15 @@
-import { use, useEffect, useState } from "react";
+import { use, useContext, useEffect, useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router";
 import useOnlineStatus from "../utils/useOnineStatus";
+import UserContextData from "../utils/UserContextData";
 
 // statevaraibles shouldn't be created out of the component and also shoudn't be created in loops or conditions it will make inconsistency to teh app
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
   const onlineStatus = useOnlineStatus();
+  // using the useContext data
+  const { LoggedInUser } = useContext(UserContextData);
 
   // useEffect(() => console.log("useEffect rendered"), [])  --  useeffect cbf will be called after initial render of the page if empty array [] is passed as second argument
   // useEffect(() => console.log("useEffect rendered"))  -- useeffect cbf will be called after every render of the page if there is no second argument
@@ -40,6 +43,7 @@ const Header = () => {
             {btnName}
           </button>
         </li>
+        <li className="p-5 m-1">{LoggedInUser?.name}</li>
       </ul>
     </div>
   );

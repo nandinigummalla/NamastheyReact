@@ -1,4 +1,6 @@
 import React from "react";
+import UserContextData from "../utils/UserContextData";
+
 class UserClass extends React.Component {
   constructor(props) {
     super(props);
@@ -38,6 +40,9 @@ class UserClass extends React.Component {
         </button> */}
         <h1>{name}</h1>
         <img className="m-5" src={avatar_url} />
+        <UserContextData.Consumer>
+          {({ LoggedInUser }) => <h3>{LoggedInUser?.name}</h3>}
+        </UserContextData.Consumer>
         <h3>
           <a href={repos_url}>Repositories</a>
         </h3>

@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
-import ResCard from "./ResCard";
+import { useContext, useEffect, useState } from "react";
+import ResCard, { WithDiscountResCard } from "./ResCard";
 import ShimmerUI from "./ShimmerUI";
 import { Link } from "react-router";
 import useRestData from "../utils/useRestData";
 import useOnlineStatus from "../utils/useOnineStatus";
+import UserContextData from "../utils/UserContextData";
+
 // passing props to component is passing arguments to function
 const Body = () => {
   const restaurantData = useRestData();
@@ -11,14 +13,17 @@ const Body = () => {
   const [resData, setResData] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const onlineStatus = useOnlineStatus();
-
+  const DisCountCard = WithDiscountResCard(ResCard);
+  const { LoggedInUser, setUserInfo } = useContext(UserContextData);
   useEffect(() => {
     setFilteredRestaurants(restaurantData);
     setResData(restaurantData);
   }, [restaurantData]);
 
   const getTopRatedRestaurants = () => {
-    setFilteredRestaurants(resData?.filter((res) => res?.info?.avgRating > 4));
+    setFilteredRestaurants(
+      resData?.filter((res) => res?.info?.avgRating >= 4.5)
+    );
   };
   const searchRest = () => {
     setFilteredRestaurants(
@@ -73,7 +78,7 @@ const Body = () => {
 
   // conditional Rendering - rendering basedon the conditions
   return filteredRestaurants ? (
-    <div className="m-5">
+    <div className="m-5 p-2">
       <div className="flex justify-between">
         <div className="flex">
           <input
@@ -81,7 +86,7 @@ const Body = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search restaurants"
-            className="border-2"
+            className="border-2 p-2"
           />
           <button
             className="m-2 p-2 rounded-xl bg-green-300"
@@ -89,6 +94,19 @@ const Body = () => {
           >
             Search
           </button>
+        </div>
+        <div>
+          <input
+            className="border-2 p-2"
+            type="text"
+            placeholder="enter the name"
+            value={LoggedInUser?.name ?? ""}
+            onChange={(e) =>
+              setUserInfo({
+                name: e.target.value,
+              })
+            }
+          />
         </div>
         <div>
           <button
@@ -112,7 +130,11 @@ const Body = () => {
             key={rest?.info?.id}
             to={`/restaurant/${rest?.info?.id}`}
           >
-            <ResCard resData={rest} />
+            {rest?.info?.aggregatedDiscountInfoV3 ? (
+              <DisCountCard resData={rest} />
+            ) : (
+              <ResCard resData={rest} />
+            )}
           </Link>
         ))}
       </div>

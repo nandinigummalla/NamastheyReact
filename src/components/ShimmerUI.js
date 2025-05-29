@@ -1,18 +1,27 @@
 const ShimmerUI = () => {
   return (
-    <div className="card-container">
-      <div className="card"></div>
-      <div className="card"></div>
-      <div className="card"></div>
-      <div className="card"></div>
-      <div className="card"></div>
-      <div className="card"></div>
-      <div className="card"></div>
-      <div className="card"></div>
-      <div className="card"></div>
-      <div className="card"></div>
-      <div className="card"></div>
-      <div className="card"></div>
+    <div className="flex flex-wrap">
+      <div className="border-2 w-70 h-100 p-2 m-5"></div>
+      <div className="border-2 w-70 h-100 p-2 m-5"></div>
+      <div className="border-2 w-70 h-100 p-2 m-5"></div>
+      <div className="border-2 w-70 h-100 p-2 m-5"></div>
+      <div className="border-2 w-70 h-100 p-2 m-5"></div>
+      <div className="border-2 w-70 h-100 p-2 m-5"></div>
+      <div className="border-2 w-70 h-100 p-2 m-5"></div>
+      <div className="border-2 w-70 h-100 p-2 m-5"></div>
+      <div className="border-2 w-70 h-100 p-2 m-5"></div>
+      <div className="border-2 w-70 h-100 p-2 m-5"></div>
+      <div className="border-2 w-70 h-100 p-2 m-5"></div>
+      <div className="border-2 w-70 h-100 p-2 m-5"></div>
+      <div className="border-2 w-70 h-100 p-2 m-5"></div>
+      <div className="border-2 w-70 h-100 p-2 m-5"></div>
+      <div className="border-2 w-70 h-100 p-2 m-5"></div>
+      <div className="border-2 w-70 h-100 p-2 m-5"></div>
+      <div className="border-2 w-70 h-100 p-2 m-5"></div>
+      <div className="border-2 w-70 h-100 p-2 m-5"></div>
+      <div className="border-2 w-70 h-100 p-2 m-5"></div>
+      <div className="border-2 w-70 h-100 p-2 m-5"></div>
+      <div className="border-2 w-70 h-100 p-2 m-5"></div>
     </div>
   );
 };

@@ -1,0 +1,113 @@
+● What is prop drilling?
+
+1. Prop Drilling:
+Prop drilling refers to the process of passing props from a parent component to a child component, and then from that child component to its own child components, and so on. This can lead to a situation where props are being passed through multiple levels of components, even if the intermediate components don't need those props themselves.
+
+Example:
+
+jsx
+// GrandParent.js
+function GrandParent() {
+  const theme = 'dark';
+  return <Parent theme={theme} />;
+}
+
+// Parent.js
+function Parent(props) {
+  return <Child theme={props.theme} />;
+}
+
+// Child.js
+function Child(props) {
+  return <div>Theme: {props.theme}</div>;
+}
+
+In this example, the Parent component doesn't use the theme prop itself, but it's passing it down to the Child component.
+
+● What is lifting the state up?
+
+2. Lifting the State Up:
+Lifting the state up refers to the process of moving the state from a child component to a parent component, so that the state can be shared with other child components. This is often done when multiple components need to access the same state.
+
+Example:
+
+jsx
+// Parent.js
+function Parent() {
+  const [count, setCount] = useState(0);
+  return (
+    <div>
+      <Child count={count} onIncrement={() => setCount(count + 1)} />
+      <AnotherChild count={count} />
+    </div>
+  );
+}
+
+// Child.js
+function Child(props) {
+  return (
+    <div>
+      <p>Count: {props.count}</p>
+      <button onClick={props.onIncrement}>Increment</button>
+    </div>
+  );
+}
+
+In this example, the Parent component holds the state, and the Child component receives the state and an onIncrement callback as props.
+
+
+● What is Context Provider and Context Consumer?
+
+
+3. Context Provider and Context Consumer:
+Context Provider and Context Consumer are part of React's Context API, which allows components to share data without passing props down manually.
+
+- Context Provider: A component that wraps around other components and provides a specific context (data) to them.
+- Context Consumer: A component that uses the context (data) provided by the Context Provider in classes.
+
+Example:
+
+jsx
+// ThemeContext.js
+const ThemeContext = React.createContext();
+
+// App.js
+function App() {
+  return (
+    <ThemeContext.Provider value="dark">
+      <Toolbar />
+    </ThemeContext.Provider>
+  );
+}
+
+// Toolbar.js
+function Toolbar() {
+  return (
+    <ThemeContext.Consumer>
+      {(theme) => <div>Theme: {theme}</div>}
+    </ThemeContext.Consumer>
+  );
+}
+
+In this example, the ThemeContext.Provider component provides the theme context to its child components, and the ThemeContext.Consumer component uses that context.
+
+
+● If you don’t pass a value to the provider does it take the default value?
+
+4. Default Value:
+If you don't pass a value to the provider, it will use the default value provided when creating the context.
+
+Example:
+
+jsx
+const ThemeContext = React.createContext('light');
+
+function App() {
+  return (
+    <ThemeContext.Provider>
+      <Toolbar />
+    </ThemeContext.Provider>
+  );
+}
+
+In this case, the Toolbar component will receive the default value 'light' because no value is provided to the ThemeContext.Provider.

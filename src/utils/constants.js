@@ -8,3 +8,6 @@ export const REST_URL =
 
 export const REST_MENU_URL =
   "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=14.74640&lng=78.54480&restaurantId=";
+
+export const REST_ORDER_URL =
+  "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/";
