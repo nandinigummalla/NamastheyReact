@@ -1,6 +1,12 @@
+import { useDispatch } from "react-redux";
 import { REST_ORDER_URL } from "../utils/constants";
+import { addItem } from "../utils/cartSlice";
 
 const OrderDetails = ({ orderData }) => {
+  const dispatch = useDispatch();
+  const handleClick = (orderData) => {
+    dispatch(addItem(orderData));
+  };
   return (
     <div className="grid m-5 p-1">
       <div className="flex justify-between">
@@ -20,7 +26,10 @@ const OrderDetails = ({ orderData }) => {
         </div>
         <div className="flex justify-between mb-2">
           <img className="size-20" src={REST_ORDER_URL + orderData?.imageId} />
-          <button className="absolute rounded-sm bg-black text-white mx-auto my-15 cursor-pointer">
+          <button
+            className="absolute rounded-sm bg-black text-white mx-auto my-15 cursor-pointer"
+            onClick={() => handleClick(orderData)}
+          >
             Add +
           </button>
         </div>

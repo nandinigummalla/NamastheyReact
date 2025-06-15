@@ -14,7 +14,7 @@ class About extends Component {
   render() {
     console.log("Parent render called");
     return (
-      <div className="border-2 w-xl m-15 ml-120 p-10 text-center">
+      <div className="border-2 w-xl m-15 ml-170 p-10 text-center">
         <h1>About Us</h1>
         <i>Nothing is impossible, the word itself says ‘I’m possible.</i>
         <UserClass name={"Nandini from class first"} location={"Proddatur"} />

@@ -1,0 +1,118 @@
+Here’s a clear explanation of each topic you asked about:
+
+---
+
+### **1. `useContext` vs `Redux`**
+
+| Feature         | `useContext`                                   | `Redux`                                       |
+| --------------- | ---------------------------------------------- | --------------------------------------------- |
+| **Purpose**     | Prop drilling avoidance (simple state sharing) | Global state management (complex/large scale) |
+| **Complexity**  | Simple                                         | More complex                                  |
+| **Use Case**    | Light app-wide state (e.g., theme, locale)     | Large-scale apps with complex logic           |
+| **Performance** | Less optimized for large apps                  | Built-in optimizations (e.g., selectors)      |
+| **Middleware**  | Not supported                                  | Middleware support (e.g., Redux Thunk, Saga)  |
+| **Dev Tools**   | Minimal                                        | Excellent debugging tools                     |
+
+---
+
+### **2. Advantage of using Redux Toolkit over Redux**
+
+**Redux Toolkit (RTK)** is the official, recommended way to use Redux. It simplifies Redux in the following ways:
+
+* **Less boilerplate**: Uses `createSlice`, `createReducer`, etc., reducing repetitive code.
+* **Immutability handled for you**: Uses `Immer` internally to allow "mutating" code safely.
+* **Includes Redux Thunk**: For async actions, built-in.
+* **Best practices by default**: Encourages good file structure and logic.
+* **Better DX**: Comes with built-in tools for debugging and development.
+
+---
+
+### **3. Explain Dispatcher**
+
+* A **dispatcher** in Redux is how you **send actions** to the store.
+* In React-Redux, this is typically done with the `dispatch()` function provided by the `useDispatch()` hook.
+
+**Example:**
+
+```js
+const dispatch = useDispatch();
+dispatch({ type: 'INCREMENT' });
+```
+
+---
+
+### **4. Explain Reducer**
+
+* A **reducer** is a **pure function** that takes the current `state` and an `action`, then returns the **new state**.
+
+**Example:**
+
+```js
+function counterReducer(state = { value: 0 }, action) {
+  switch(action.type) {
+    case 'INCREMENT':
+      return { value: state.value + 1 };
+    default:
+      return state;
+  }
+}
+```
+
+---
+
+### **5. Explain Slice**
+
+* A **slice** is a part of your Redux store **dedicated to one feature** (e.g., user, cart, auth).
+* Contains:
+
+  * **Initial state**
+  * **Reducers**
+  * **Actions**
+
+**Defined using `createSlice` in Redux Toolkit.**
+
+---
+
+### **6. Explain Selector**
+
+* A **selector** is a function used to **extract data from the Redux store**.
+
+**Example:**
+
+```js
+const selectCounterValue = (state) => state.counter.value;
+```
+
+* Helps optimize performance and separate logic.
+
+---
+
+### **7. Explain `createSlice` and its configuration**
+
+**`createSlice`** is a Redux Toolkit function that creates a slice with reducers and actions automatically.
+
+**Configuration object:**
+
+```js
+createSlice({
+  name: 'counter', // name of the slice (prefixes action types)
+  initialState: { value: 0 }, // initial state of the slice
+  reducers: {
+    increment(state) {
+      state.value += 1; // Immer handles immutability
+    },
+    decrement(state) {
+      state.value -= 1;
+    },
+  },
+})
+```
+
+**It returns:**
+
+* `reducer`: the reducer function for the slice.
+* `actions`: auto-generated action creators.
+
+---
+
+Let me know if you want a practical example using these concepts together.

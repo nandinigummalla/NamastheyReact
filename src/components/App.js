@@ -11,6 +11,9 @@ import Register from "./Register";
 const Grocery = lazy(() => import("./Grocery"));
 const About = lazy(() => import("./About"));
 import UserContextData from "../utils/UserContextData";
+import { Provider } from "react-redux";
+import appStore from "../utils/appStore";
+import CartList from "./CartList";
 
 export const App = () => {
   const { LoggedInUser } = useContext(UserContextData);
@@ -24,12 +27,14 @@ export const App = () => {
   }, []);
 
   return (
-    <UserContextData.Provider value={{ LoggedInUser: userInfo, setUserInfo }}>
-      <div className="applayout">
-        <Header />
-        <Outlet />
-      </div>
-    </UserContextData.Provider>
+    <Provider store={appStore}>
+      <UserContextData.Provider value={{ LoggedInUser: userInfo, setUserInfo }}>
+        <div className="applayout">
+          <Header />
+          <Outlet />
+        </div>
+      </UserContextData.Provider>
+    </Provider>
   );
 };
 
@@ -66,6 +71,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:id",
         element: <RestaurantDetail />,
+      },
+      {
+        path: "/cart",
+        element: <CartList />,
       },
     ],
   },
